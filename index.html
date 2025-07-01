@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本語動詞50選</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 1em;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 1em;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.5em 0;
+    }
+    button {
+      padding: 0.5em 1em;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>日本語動詞50選（例文音声付き）</h1>
+  <ul id="verbList"></ul>  <script>
+    const verbs = [
+      { verb: "ある", romaji: "aru", sentence: "つくえの上に本がある。" },
+      { verb: "いる", romaji: "iru", sentence: "へやにねこがいる。" },
+      { verb: "する", romaji: "suru", sentence: "サッカーをする。" },
+      { verb: "なる", romaji: "naru", sentence: "先生になりたい。" },
+      { verb: "いく", romaji: "iku", sentence: "学校に行く。" },
+      { verb: "くる", romaji: "kuru", sentence: "ともだちが来る。" },
+      { verb: "かえる", romaji: "kaeru", sentence: "うちに帰る。" },
+      { verb: "はいる", romaji: "hairu", sentence: "へやに入る。" },
+      { verb: "でる", romaji: "deru", sentence: "へやを出る。" },
+      { verb: "あける", romaji: "akeru", sentence: "まどを開ける。" },
+      { verb: "しめる", romaji: "shimeru", sentence: "ドアをしめる。" },
+      { verb: "みる", romaji: "miru", sentence: "テレビを見る。" },
+      { verb: "みせる", romaji: "miseru", sentence: "しゃしんを見せる。" },
+      { verb: "きく", romaji: "kiku", sentence: "おんがくをきく。" },
+      { verb: "はなす", romaji: "hanasu", sentence: "日本語をはなす。" },
+      { verb: "いう", romaji: "iu", sentence: "ありがとうという。" },
+      { verb: "かく", romaji: "kaku", sentence: "てがみをかく。" },
+      { verb: "よむ", romaji: "yomu", sentence: "本をよむ。" },
+      { verb: "たべる", romaji: "taberu", sentence: "パンをたべる。" },
+      { verb: "のむ", romaji: "nomu", sentence: "みずをのむ。" },
+      { verb: "ねる", romaji: "neru", sentence: "はやくねる。" },
+      { verb: "おきる", romaji: "okiru", sentence: "６時におきる。" },
+      { verb: "あるく", romaji: "aruku", sentence: "こうえんをあるく。" },
+      { verb: "はしる", romaji: "hashiru", sentence: "はやくはしる。" },
+      { verb: "つかう", romaji: "tsukau", sentence: "スマホをつかう。" },
+      { verb: "つくる", romaji: "tsukuru", sentence: "りょうりをつくる。" },
+      { verb: "もつ", romaji: "motsu", sentence: "かばんをもつ。" },
+      { verb: "まつ", romaji: "matsu", sentence: "バスをまつ。" },
+      { verb: "あう", romaji: "au", sentence: "ともだちにあう。" },
+      { verb: "わかる", romaji: "wakaru", sentence: "いみがわかる。" },
+      { verb: "おぼえる", romaji: "oboeru", sentence: "ことばをおぼえる。" },
+      { verb: "わすれる", romaji: "wasureru", sentence: "しゅくだいをわすれる。" },
+      { verb: "おしえる", romaji: "oshieru", sentence: "えいごをおしえる。" },
+      { verb: "ならう", romaji: "narau", sentence: "日本語をならう。" },
+      { verb: "はじめる", romaji: "hajimeru", sentence: "べんきょうをはじめる。" },
+      { verb: "おわる", romaji: "owaru", sentence: "じゅぎょうがおわる。" },
+      { verb: "はたらく", romaji: "hataraku", sentence: "会社ではたらく。" },
+      { verb: "べんきょうする", romaji: "benkyou_suru", sentence: "日本語をべんきょうする。" },
+      { verb: "のる", romaji: "noru", sentence: "でんしゃにのる。" },
+      { verb: "おりる", romaji: "oriru", sentence: "くるまをおりる。" },
+      { verb: "あらう", romaji: "arau", sentence: "てをあらう。" },
+      { verb: "かう", romaji: "kau", sentence: "りんごをかう。" },
+      { verb: "うる", romaji: "uru", sentence: "チケットをうる。" },
+      { verb: "きる", romaji: "kiru", sentence: "シャツをきる。" },
+      { verb: "ぬぐ", romaji: "nugu", sentence: "くつをぬぐ。" },
+      { verb: "いれる", romaji: "ireru", sentence: "カバンにいれる。" },
+      { verb: "だす", romaji: "dasu", sentence: "ごみをだす。" },
+      { verb: "およぐ", romaji: "oyogu", sentence: "プールでおよぐ。" },
+      { verb: "あそぶ", romaji: "asobu", sentence: "こうえんであそぶ。" },
+      { verb: "わらう", romaji: "warau", sentence: "わらっている。" }
+    ];
+
+    const container = document.getElementById("verbList");
+    verbs.forEach(v => {
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.textContent = `${v.verb} (${v.romaji})`;
+      btn.onclick = () => speakSentence(v.sentence);
+      li.appendChild(btn);
+      container.appendChild(li);
+    });
+
+    function speakSentence(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = "ja-JP";
+      speechSynthesis.cancel();
+      speechSynthesis.speak(msg);
+    }
+  </script></body>
+</html>
