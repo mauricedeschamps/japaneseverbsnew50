@@ -1,109 +1,122 @@
-<!DOCTYPE html><html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Japanese Verbs List</title>
+  <title>日本語動詞50選</title>
   <style>
     body {
       font-family: sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
       padding: 1em;
+      transition: all 0.3s;
     }
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 1em;
-      color: #ffffff;
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin: 0.5em 0;
-    }
-    a {
+    .button-list button {
       display: block;
-      text-decoration: none;
-      background: #1e88e5;
-      color: white;
-      padding: 0.8em;
-      border-radius: 6px;
-      transition: background 0.3s;
+      width: 100%;
+      padding: 0.75em;
+      margin: 0.5em 0;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background-color: #ffffff;
+      color: #333;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: 0.2s;
     }
-    a:hover {
-      background: #1565c0;
+    .dark-mode .button-list button {
+      background-color: #1e1e1e;
+      color: #eee;
     }
-    .romaji {
-      font-size: 0.9em;
-      color: #ccc;
+    button:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
 <body>
-  <h1>Japanese Verbs List</h1>
-  <ul id="verbList"></ul>  <script>
-    const verbs = [
-      { verb: "ある", romaji: "aru" },
-      { verb: "いる", romaji: "iru" },
-      { verb: "する", romaji: "suru" },
-      { verb: "なる", romaji: "naru" },
-      { verb: "いく", romaji: "iku" },
-      { verb: "くる", romaji: "kuru" },
-      { verb: "かえる", romaji: "kaeru" },
-      { verb: "はいる", romaji: "hairu" },
-      { verb: "でる", romaji: "deru" },
-      { verb: "あける", romaji: "akeru" },
-      { verb: "しめる", romaji: "shimeru" },
-      { verb: "みる", romaji: "miru" },
-      { verb: "みせる", romaji: "miseru" },
-      { verb: "きく", romaji: "kiku" },
-      { verb: "はなす", romaji: "hanasu" },
-      { verb: "いう", romaji: "iu" },
-      { verb: "かく", romaji: "kaku" },
-      { verb: "よむ", romaji: "yomu" },
-      { verb: "たべる", romaji: "taberu" },
-      { verb: "のむ", romaji: "nomu" },
-      { verb: "ねる", romaji: "neru" },
-      { verb: "おきる", romaji: "okiru" },
-      { verb: "あるく", romaji: "aruku" },
-      { verb: "はしる", romaji: "hashiru" },
-      { verb: "つかう", romaji: "tsukau" },
-      { verb: "つくる", romaji: "tsukuru" },
-      { verb: "もつ", romaji: "motsu" },
-      { verb: "まつ", romaji: "matsu" },
-      { verb: "あう", romaji: "au" },
-      { verb: "わかる", romaji: "wakaru" },
-      { verb: "おぼえる", romaji: "oboeru" },
-      { verb: "わすれる", romaji: "wasureru" },
-      { verb: "おしえる", romaji: "oshieru" },
-      { verb: "ならう", romaji: "narau" },
-      { verb: "はじめる", romaji: "hajimeru" },
-      { verb: "おわる", romaji: "owaru" },
-      { verb: "はたらく", romaji: "hataraku" },
-      { verb: "べんきょうする", romaji: "benkyou_suru" },
-      { verb: "のる", romaji: "noru" },
-      { verb: "おりる", romaji: "oriru" },
-      { verb: "あらう", romaji: "arau" },
-      { verb: "かう", romaji: "kau" },
-      { verb: "うる", romaji: "uru" },
-      { verb: "きる", romaji: "kiru" },
-      { verb: "ぬぐ", romaji: "nugu" },
-      { verb: "いれる", romaji: "ireru" },
-      { verb: "だす", romaji: "dasu" },
-      { verb: "およぐ", romaji: "oyogu" },
-      { verb: "あそぶ", romaji: "asobu" },
-      { verb: "わらう", romaji: "warau" }
-    ];
 
-    const container = document.getElementById("verbList");
-    verbs.forEach(v => {
-      const li = document.createElement("li");
-      const a = document.createElement("a");
-      a.href = `verb_${v.romaji}.html`;
-      a.innerHTML = `${v.verb}<span class="romaji">${v.romaji}</span>`;
-      li.appendChild(a);
-      container.appendChild(li);
-    });
-  </script></body>
+<h1>日本語の動詞50選</h1>
+<button onclick="toggleMode()">🌗 ダーク/ライト切替</button>
+
+<div class="button-list" id="verbList"></div>
+
+<script>
+const verbs = [
+  { verb: "たべる", romaji: "taberu" },
+  { verb: "のむ", romaji: "nomu" },
+  { verb: "いく", romaji: "iku" },
+  { verb: "くる", romaji: "kuru" },
+  { verb: "みる", romaji: "miru" },
+  { verb: "ある", romaji: "aru" },
+  { verb: "いる", romaji: "iru" },
+  { verb: "する", romaji: "suru" },
+  { verb: "なる", romaji: "naru" },
+  { verb: "かえる", romaji: "kaeru" },
+  { verb: "はいる", romaji: "hairu" },
+  { verb: "でる", romaji: "deru" },
+  { verb: "あける", romaji: "akeru" },
+  { verb: "しめる", romaji: "shimeru" },
+  { verb: "みせる", romaji: "miseru" },
+  { verb: "きく", romaji: "kiku" },
+  { verb: "はなす", romaji: "hanasu" },
+  { verb: "いう", romaji: "iu" },
+  { verb: "かく", romaji: "kaku" },
+  { verb: "よむ", romaji: "yomu" },
+  { verb: "ねる", romaji: "neru" },
+  { verb: "おきる", romaji: "okiru" },
+  { verb: "あるく", romaji: "aruku" },
+  { verb: "はしる", romaji: "hashiru" },
+  { verb: "つかう", romaji: "tsukau" },
+  { verb: "つくる", romaji: "tsukuru" },
+  { verb: "もつ", romaji: "motsu" },
+  { verb: "まつ", romaji: "matsu" },
+  { verb: "あう", romaji: "au" },
+  { verb: "わかる", romaji: "wakaru" },
+  { verb: "おぼえる", romaji: "oboeru" },
+  { verb: "わすれる", romaji: "wasureru" },
+  { verb: "おしえる", romaji: "oshieru" },
+  { verb: "ならう", romaji: "narau" },
+  { verb: "はじめる", romaji: "hajimeru" },
+  { verb: "おわる", romaji: "owaru" },
+  { verb: "はたらく", romaji: "hataraku" },
+  { verb: "べんきょうする", romaji: "benkyou suru" },
+  { verb: "のる", romaji: "noru" },
+  { verb: "おりる", romaji: "oriru" },
+  { verb: "あらう", romaji: "arau" },
+  { verb: "かう", romaji: "kau" },
+  { verb: "うる", romaji: "uru" },
+  { verb: "きる", romaji: "kiru" },
+  { verb: "ぬぐ", romaji: "nugu" },
+  { verb: "いれる", romaji: "ireru" },
+  { verb: "だす", romaji: "dasu" },
+  { verb: "およぐ", romaji: "oyogu" },
+  { verb: "あそぶ", romaji: "asobu" },
+  { verb: "わらう", romaji: "warau" }
+];
+
+function renderVerbs() {
+  const container = document.getElementById("verbList");
+  verbs.forEach(v => {
+    const btn = document.createElement("button");
+    btn.textContent = `${v.verb} (${v.romaji})`;
+    btn.onclick = () => window.location.href = `verb.html?verb=${v.romaji}`;
+    container.appendChild(btn);
+  });
+}
+
+function toggleMode() {
+  document.body.classList.toggle("dark-mode");
+}
+
+renderVerbs();
+</script>
+
+</body>
 </html>
