@@ -43,15 +43,63 @@
 
 <script>
 const verbs = [
-  { verb: "たべる", romaji: "taberu" },
-  // ... (他の動詞は同じ)
+  { verb: "たべる", romaji: "taberu", meaning: "to eat" },
+  { verb: "のむ", romaji: "nomu", meaning: "to drink" },
+  { verb: "いく", romaji: "iku", meaning: "to go" },
+  { verb: "くる", romaji: "kuru", meaning: "to come" },
+  { verb: "する", romaji: "suru", meaning: "to do" },
+  { verb: "みる", romaji: "miru", meaning: "to see" },
+  { verb: "きく", romaji: "kiku", meaning: "to listen" },
+  { verb: "よむ", romaji: "yomu", meaning: "to read" },
+  { verb: "かく", romaji: "kaku", meaning: "to write" },
+  { verb: "はなす", romaji: "hanasu", meaning: "to speak" },
+  { verb: "あう", romaji: "au", meaning: "to meet" },
+  { verb: "かう", romaji: "kau", meaning: "to buy" },
+  { verb: "とる", romaji: "toru", meaning: "to take" },
+  { verb: "おきる", romaji: "okiru", meaning: "to wake up" },
+  { verb: "ねる", romaji: "neru", meaning: "to sleep" },
+  { verb: "はたらく", romaji: "hataraku", meaning: "to work" },
+  { verb: "べんきょうする", romaji: "benkyou suru", meaning: "to study" },
+  { verb: "あそぶ", romaji: "asobu", meaning: "to play" },
+  { verb: "たつ", romaji: "tatsu", meaning: "to stand" },
+  { verb: "すわる", romaji: "suwaru", meaning: "to sit" },
+  { verb: "あるく", romaji: "aruku", meaning: "to walk" },
+  { verb: "はしる", romaji: "hashiru", meaning: "to run" },
+  { verb: "およぐ", romaji: "oyogu", meaning: "to swim" },
+  { verb: "とぶ", romaji: "tobu", meaning: "to fly" },
+  { verb: "のる", romaji: "noru", meaning: "to ride" },
+  { verb: "おる", romaji: "oru", meaning: "to break" },
+  { verb: "なおす", romaji: "naosu", meaning: "to fix" },
+  { verb: "あける", romaji: "akeru", meaning: "to open" },
+  { verb: "しめる", romaji: "shimeru", meaning: "to close" },
+  { verb: "つける", romaji: "tsukeru", meaning: "to turn on" },
+  { verb: "けす", romaji: "kesu", meaning: "to turn off" },
+  { verb: "あらう", romaji: "arau", meaning: "to wash" },
+  { verb: "そうじする", romaji: "souji suru", meaning: "to clean" },
+  { verb: "せんたくする", romaji: "sentaku suru", meaning: "to do laundry" },
+  { verb: "りょうりする", romaji: "ryouri suru", meaning: "to cook" },
+  { verb: "つくる", romaji: "tsukuru", meaning: "to make" },
+  { verb: "かう", romaji: "kau", meaning: "to keep (a pet)" },
+  { verb: "うる", romaji: "uru", meaning: "to sell" },
+  { verb: "もつ", romaji: "motsu", meaning: "to hold" },
+  { verb: "わたす", romaji: "watasu", meaning: "to hand over" },
+  { verb: "とどける", romaji: "todokeru", meaning: "to deliver" },
+  { verb: "あむ", romaji: "amu", meaning: "to knit" },
+  { verb: "ぬう", romaji: "nuu", meaning: "to sew" },
+  { verb: "きる", romaji: "kiru", meaning: "to cut" },
+  { verb: "はる", romaji: "haru", meaning: "to stick" },
+  { verb: "おす", romaji: "osu", meaning: "to push" },
+  { verb: "ひく", romaji: "hiku", meaning: "to pull" },
+  { verb: "まつ", romaji: "matsu", meaning: "to wait" },
+  { verb: "よぶ", romaji: "yobu", meaning: "to call" },
+  { verb: "こたえる", romaji: "kotaeru", meaning: "to answer" }
 ];
 
 function renderVerbs() {
   const container = document.getElementById("verbList");
   verbs.forEach(v => {
     const btn = document.createElement("button");
-    btn.textContent = `${v.verb} (${v.romaji})`;
+    btn.textContent = `${v.verb} (${v.romaji}) - ${v.meaning}`;
     btn.onclick = () => window.location.href = `verb.html?verb=${v.romaji}`;
     container.appendChild(btn);
   });
