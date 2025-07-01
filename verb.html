@@ -12,138 +12,114 @@
       margin: 0;
       padding: 1em;
     }
-    .example {
+    .verb-card {
       background-color: #1e1e1e;
+      border-radius: 8px;
       padding: 1em;
       margin: 1em 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .romaji, .translation {
-      color: #aaa;
-      font-style: italic;
-      margin: 0.5em 0;
+    h1 {
+      color: #4CAF50;
+      text-align: center;
     }
     button {
-      padding: 0.5em 1em;
-      margin: 0.2em;
-      border-radius: 4px;
+      padding: 0.75em;
+      font-size: 1em;
+      border-radius: 8px;
       border: none;
       cursor: pointer;
+      background-color: #2e2e2e;
+      color: #eee;
+      margin-top: 1em;
     }
-    .back-btn {
-      background-color: #1565C0;
-      color: white;
-    }
-    .back-btn:hover {
-      background-color: #0D47A1;
-    }
-    h1, h2, h3 {
-      color: #4CAF50;
-    }
-    .speak-btn {
-      background-color: #7B1FA2;
-      color: white;
-    }
-    .speak-btn:hover {
-      background-color: #4A148C;
+    button:hover {
+      background-color: #3e3e3e;
     }
   </style>
 </head>
 <body>
 
-<button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
-
-<div id="verbDetails"></div>
+<div class="verb-card" id="verbDetails"></div>
+<button onclick="window.location.href='index.html'">Back to List</button>
 
 <script>
-const verbData = {
-  taberu: {
-    verb: "たべる",
-    romaji: "taberu",
-    meaning: "to eat",
-    examples: [
-      {japanese: "わたしは あさごはんを たべます。", romaji: "Watashi wa asagohan o tabemasu.", translation: "I eat breakfast."},
-      {japanese: "この ケーキを たべて ください。", romaji: "Kono kēki o tabete kudasai.", translation: "Please eat this cake."},
-      {japanese: "きのう すしを たべました。", romaji: "Kinō sushi o tabemashita.", translation: "I ate sushi yesterday."}
-    ]
-  },
-  nomu: {
-    verb: "のむ",
-    romaji: "nomu",
-    meaning: "to drink",
-    examples: [
-      {japanese: "コーヒーを のみます。", romaji: "Kōhī o nomimasu.", translation: "I drink coffee."},
-      {japanese: "まいにち みずを たくさん のんで ください。", romaji: "Mainichi mizu o takusan nonde kudasai.", translation: "Please drink plenty of water every day."},
-      {japanese: "おさけを のみすぎないで ください。", romaji: "Osake o nomisuginaide kudasai.", translation: "Please don't drink too much alcohol."}
-    ]
-  },
-  iku: {
-    verb: "いく",
-    romaji: "iku",
-    meaning: "to go",
-    examples: [
-      {japanese: "あした とうきょうに いきます。", romaji: "Ashita Tōkyō ni ikimasu.", translation: "I will go to Tokyo tomorrow."},
-      {japanese: "がっこうに いく まえに あさごはんを たべます。", romaji: "Gakkō ni iku mae ni asagohan o tabemasu.", translation: "I eat breakfast before going to school."},
-      {japanese: "どこに いきたいですか？", romaji: "Doko ni ikitai desu ka?", translation: "Where do you want to go?"}
-    ]
-  },
-  // ... (他の47個の動詞も同様の形式で)
-  warau: {
-    verb: "わらう",
-    romaji: "warau",
-    meaning: "to laugh",
-    examples: [
-      {japanese: "おもしろい えいがを みて わらいました。", romaji: "Omoshiroi eiga o mite waraimashita.", translation: "I watched a funny movie and laughed."},
-      {japanese: "もっと わらって ください。", romaji: "Motto waratte kudasai.", translation: "Please laugh more."},
-      {japanese: "なにを わらって いるんですか？", romaji: "Nani o waratte irun desu ka?", translation: "What are you laughing at?"}
-    ]
-  }
-};
+const verbs = [
+  { verb: "たべる", romaji: "taberu", meaning: "to eat", type: "ichidan" },
+  { verb: "のむ", romaji: "nomu", meaning: "to drink", type: "godan" },
+  { verb: "いく", romaji: "iku", meaning: "to go", type: "godan" },
+  { verb: "くる", romaji: "kuru", meaning: "to come", type: "irregular" },
+  { verb: "みる", romaji: "miru", meaning: "to see", type: "ichidan" },
+  { verb: "ある", romaji: "aru", meaning: "to exist (inanimate)", type: "godan" },
+  { verb: "いる", romaji: "iru", meaning: "to exist (animate)", type: "ichidan" },
+  { verb: "する", romaji: "suru", meaning: "to do", type: "irregular" },
+  { verb: "なる", romaji: "naru", meaning: "to become", type: "godan" },
+  { verb: "かえる", romaji: "kaeru", meaning: "to return", type: "ichidan" },
+  { verb: "はいる", romaji: "hairu", meaning: "to enter", type: "godan" },
+  { verb: "でる", romaji: "deru", meaning: "to exit", type: "ichidan" },
+  { verb: "あける", romaji: "akeru", meaning: "to open", type: "ichidan" },
+  { verb: "しめる", romaji: "shimeru", meaning: "to close", type: "ichidan" },
+  { verb: "みせる", romaji: "miseru", meaning: "to show", type: "ichidan" },
+  { verb: "きく", romaji: "kiku", meaning: "to listen", type: "godan" },
+  { verb: "はなす", romaji: "hanasu", meaning: "to speak", type: "godan" },
+  { verb: "いう", romaji: "iu", meaning: "to say", type: "godan" },
+  { verb: "かく", romaji: "kaku", meaning: "to write", type: "godan" },
+  { verb: "よむ", romaji: "yomu", meaning: "to read", type: "godan" },
+  { verb: "ねる", romaji: "neru", meaning: "to sleep", type: "ichidan" },
+  { verb: "おきる", romaji: "okiru", meaning: "to wake up", type: "ichidan" },
+  { verb: "あるく", romaji: "aruku", meaning: "to walk", type: "godan" },
+  { verb: "はしる", romaji: "hashiru", meaning: "to run", type: "godan" },
+  { verb: "つかう", romaji: "tsukau", meaning: "to use", type: "godan" },
+  { verb: "つくる", romaji: "tsukuru", meaning: "to make", type: "godan" },
+  { verb: "もつ", romaji: "motsu", meaning: "to hold", type: "godan" },
+  { verb: "まつ", romaji: "matsu", meaning: "to wait", type: "godan" },
+  { verb: "あう", romaji: "au", meaning: "to meet", type: "godan" },
+  { verb: "わかる", romaji: "wakaru", meaning: "to understand", type: "godan" },
+  { verb: "おぼえる", romaji: "oboeru", meaning: "to remember", type: "ichidan" },
+  { verb: "わすれる", romaji: "wasureru", meaning: "to forget", type: "ichidan" },
+  { verb: "おしえる", romaji: "oshieru", meaning: "to teach", type: "ichidan" },
+  { verb: "ならう", romaji: "narau", meaning: "to learn", type: "godan" },
+  { verb: "はじめる", romaji: "hajimeru", meaning: "to begin", type: "ichidan" },
+  { verb: "おわる", romaji: "owaru", meaning: "to finish", type: "godan" },
+  { verb: "はたらく", romaji: "hataraku", meaning: "to work", type: "godan" },
+  { verb: "べんきょうする", romaji: "benkyou suru", meaning: "to study", type: "irregular" },
+  { verb: "のる", romaji: "noru", meaning: "to ride", type: "godan" },
+  { verb: "おりる", romaji: "oriru", meaning: "to get off", type: "ichidan" },
+  { verb: "あらう", romaji: "arau", meaning: "to wash", type: "godan" },
+  { verb: "かう", romaji: "kau", meaning: "to buy", type: "godan" },
+  { verb: "うる", romaji: "uru", meaning: "to sell", type: "godan" },
+  { verb: "きる", romaji: "kiru", meaning: "to wear (upper body)", type: "ichidan" },
+  { verb: "ぬぐ", romaji: "nugu", meaning: "to take off (clothes)", type: "godan" },
+  { verb: "いれる", romaji: "ireru", meaning: "to put in", type: "ichidan" },
+  { verb: "だす", romaji: "dasu", meaning: "to take out", type: "godan" },
+  { verb: "およぐ", romaji: "oyogu", meaning: "to swim", type: "godan" },
+  { verb: "あそぶ", romaji: "asobu", meaning: "to play", type: "godan" },
+  { verb: "わらう", romaji: "warau", meaning: "to laugh", type: "godan" }
+];
 
-function loadVerbDetails() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const verbRomaji = urlParams.get('verb');
-  const verbInfo = verbData[verbRomaji];
-  
-  if (!verbInfo) {
-    document.getElementById('verbDetails').innerHTML = '<h2>Verb not found</h2>';
-    return;
-  }
-  
+function getVerbDetails() {
+  const params = new URLSearchParams(window.location.search);
+  const romaji = params.get('verb');
+  return verbs.find(v => v.romaji === romaji);
+}
+
+function renderVerbDetails() {
+  const verb = getVerbDetails();
   const container = document.getElementById('verbDetails');
-  container.innerHTML = `
-    <h1>${verbInfo.verb} (${verbInfo.romaji})</h1>
-    <h2>Meaning: ${verbInfo.meaning}</h2>
-    <h3>Example Sentences:</h3>
-  `;
   
-  verbInfo.examples.forEach((example, index) => {
-    const exampleDiv = document.createElement('div');
-    exampleDiv.className = 'example';
-    exampleDiv.innerHTML = `
-      <p>${example.japanese}</p>
-      <p class="romaji">${example.romaji}</p>
-      <p class="translation">${example.translation}</p>
-      <button class="speak-btn" onclick="speak('${example.japanese}')">Sound</button>
+  if (verb) {
+    container.innerHTML = `
+      <h1>${verb.verb}</h1>
+      <p><strong>Romaji:</strong> ${verb.romaji}</p>
+      <p><strong>Meaning:</strong> ${verb.meaning}</p>
+      <p><strong>Type:</strong> ${verb.type}</p>
     `;
-    container.appendChild(exampleDiv);
-  });
-}
-
-function speak(text) {
-  if ('speechSynthesis' in window) {
-    const utterance = new SpeechSynthesisUtterance();
-    utterance.text = text;
-    utterance.lang = 'ja-JP';
-    utterance.rate = 0.9;
-    window.speechSynthesis.speak(utterance);
+    document.title = `${verb.verb} Details`;
   } else {
-    alert('Text-to-speech not supported in this browser');
+    container.innerHTML = `<p>Verb not found</p>`;
   }
 }
 
-loadVerbDetails();
+renderVerbDetails();
 </script>
 
 </body>
