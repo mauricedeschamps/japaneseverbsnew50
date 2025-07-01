@@ -6,27 +6,25 @@
   <title>Japanese Verbs 50</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: sans-serif;
       background-color: #121212;
       color: #eee;
       margin: 0;
       padding: 1em;
-      line-height: 1.6;
     }
     .button-list button {
       display: block;
       width: 100%;
       padding: 0.75em;
       margin: 0.5em 0;
-      font-size: 1.1em;
+      font-size: 1.2em;
       border-radius: 8px;
       border: none;
       cursor: pointer;
       background-color: #1e1e1e;
       color: #eee;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: 0.2s;
-      text-align: left;
     }
     button:hover {
       background-color: #2e2e2e;
@@ -34,81 +32,6 @@
     h1 {
       color: #4CAF50;
       text-align: center;
-      margin-bottom: 1.5em;
-    }
-    .verb-details {
-      display: none;
-      background-color: #1e1e1e;
-      padding: 1.5em;
-      border-radius: 8px;
-      margin-top: 1em;
-      border-left: 4px solid #4CAF50;
-    }
-    .verb-details h2 {
-      color: #4CAF50;
-      margin-top: 0;
-      border-bottom: 1px solid #333;
-      padding-bottom: 0.5em;
-    }
-    .verb-info {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1em;
-    }
-    .conjugation {
-      background-color: #252525;
-      padding: 1em;
-      border-radius: 6px;
-    }
-    .meaning {
-      background-color: #252525;
-      padding: 1em;
-      border-radius: 6px;
-    }
-    .examples {
-      grid-column: span 2;
-      background-color: #252525;
-      padding: 1em;
-      border-radius: 6px;
-    }
-    .back-btn {
-      display: block;
-      width: 100%;
-      padding: 0.75em;
-      margin-top: 1em;
-      background-color: #333;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .back-btn:hover {
-      background-color: #444;
-    }
-    .type-tag {
-      display: inline-block;
-      padding: 0.2em 0.5em;
-      border-radius: 4px;
-      font-size: 0.8em;
-      margin-left: 0.5em;
-    }
-    .ru-verb {
-      background-color: #3a5f8a;
-    }
-    .u-verb {
-      background-color: #8a3a5f;
-    }
-    .irregular {
-      background-color: #8a7d3a;
-    }
-    @media (max-width: 600px) {
-      .verb-info {
-        grid-template-columns: 1fr;
-      }
-      .examples {
-        grid-column: span 1;
-      }
     }
   </style>
 </head>
@@ -117,291 +40,71 @@
 <h1>Japanese Verbs 50</h1>
 
 <div class="button-list" id="verbList"></div>
-<div id="verbDetailsContainer"></div>
 
 <script>
 const verbs = [
-  { 
-    verb: "たべる", 
-    romaji: "taberu",
-    meaning: "to eat",
-    type: "ru-verb",
-    conjugations: {
-      present: "たべる (taberu)",
-      past: "たべた (tabeta)",
-      negative: "たべない (tabenai)",
-      te: "たべて (tabete)",
-      potential: "たべられる (taberareru)",
-      passive: "たべられる (taberareru)",
-      causative: "たべさせる (tabesaseru)",
-      imperative: "たべろ (tabero)"
-    },
-    examples: [
-      "あさごはんをたべます。 (Asagohan o tabemasu.) - I eat breakfast.",
-      "きのう、すしをたべました。 (Kinō, sushi o tabemashita.) - Yesterday, I ate sushi."
-    ],
-    notes: "Common everyday verb for eating. Often used with を particle."
-  },
-  { 
-    verb: "のむ", 
-    romaji: "nomu",
-    meaning: "to drink",
-    type: "u-verb",
-    conjugations: {
-      present: "のむ (nomu)",
-      past: "のんだ (nonda)",
-      negative: "のまない (nomanai)",
-      te: "のんで (nonde)",
-      potential: "のめる (nomeru)",
-      passive: "のまれる (nomareru)",
-      causative: "のませる (nomaseru)",
-      imperative: "のめ (nome)"
-    },
-    examples: [
-      "みずをのみます。 (Mizu o nomimasu.) - I drink water.",
-      "おさけをのまないでください。 (Osake o nomanai de kudasai.) - Please don't drink alcohol."
-    ],
-    notes: "Used for drinking liquids. Can also mean 'to take' medicine (くすりをのむ)."
-  },
-  { 
-    verb: "いく", 
-    romaji: "iku",
-    meaning: "to go",
-    type: "u-verb",
-    conjugations: {
-      present: "いく (iku)",
-      past: "いった (itta)",
-      negative: "いかない (ikanai)",
-      te: "いって (itte)",
-      potential: "いける (ikeru)",
-      passive: "いかれる (ikareru)",
-      causative: "いかせる (ikaseru)",
-      imperative: "いけ (ike)"
-    },
-    examples: [
-      "がっこうにいきます。 (Gakkō ni ikimasu.) - I go to school.",
-      "きのう、えいがにいきました。 (Kinō, eiga ni ikimashita.) - Yesterday, I went to the movies."
-    ],
-    notes: "Irregular past tense form (いった). Uses に particle for destination."
-  },
-  { 
-    verb: "くる", 
-    romaji: "kuru",
-    meaning: "to come",
-    type: "irregular",
-    conjugations: {
-      present: "くる (kuru)",
-      past: "きた (kita)",
-      negative: "こない (konai)",
-      te: "きて (kite)",
-      potential: "こられる (korareru)",
-      passive: "こられる (korareru)",
-      causative: "こさせる (kosaseru)",
-      imperative: "こい (koi)"
-    },
-    examples: [
-      "あした、うちにきてください。 (Ashita, uchi ni kite kudasai.) - Please come to my house tomorrow.",
-      "ともだちがきました。 (Tomodachi ga kimashita.) - My friend came."
-    ],
-    notes: "One of only two irregular verbs in Japanese. Uses に particle for destination."
-  },
-  { 
-    verb: "みる", 
-    romaji: "miru",
-    meaning: "to see, to look, to watch",
-    type: "ru-verb",
-    conjugations: {
-      present: "みる (miru)",
-      past: "みた (mita)",
-      negative: "みない (minai)",
-      te: "みて (mite)",
-      potential: "みられる (mirareru)",
-      passive: "みられる (mirareru)",
-      causative: "みさせる (misaseru)",
-      imperative: "みろ (miro)"
-    },
-    examples: [
-      "テレビをみます。 (Terebi o mimasu.) - I watch TV.",
-      "このしゃしんをみてください。 (Kono shashin o mite kudasai.) - Please look at this photo."
-    ],
-    notes: "Often used with を particle. Can mean 'to try' when used with て form (みてください - please try)."
-  },
-  { 
-    verb: "ある", 
-    romaji: "aru",
-    meaning: "to exist (inanimate objects)",
-    type: "u-verb",
-    conjugations: {
-      present: "ある (aru)",
-      past: "あった (atta)",
-      negative: "ない (nai)",
-      te: "あって (atte)",
-      potential: "ありえる (arieru)",
-      passive: "N/A",
-      causative: "N/A",
-      imperative: "N/A"
-    },
-    examples: [
-      "つくえのうえにほんがあります。 (Tsukue no ue ni hon ga arimasu.) - There is a book on the desk.",
-      "おかねがない。 (Okane ga nai.) - There is no money."
-    ],
-    notes: "Used for inanimate objects and abstract things. Negative form is ない (not あらない)."
-  },
-  { 
-    verb: "いる", 
-    romaji: "iru",
-    meaning: "to exist (animate objects), to need",
-    type: "ru-verb",
-    conjugations: {
-      present: "いる (iru)",
-      past: "いた (ita)",
-      negative: "いない (inai)",
-      te: "いて (ite)",
-      potential: "いられる (irareru)",
-      passive: "いられる (irareru)",
-      causative: "いさせる (isaseru)",
-      imperative: "いろ (iro)"
-    },
-    examples: [
-      "いぬがいます。 (Inu ga imasu.) - There is a dog.",
-      "かれはトイレにいません。 (Kare wa toire ni imasen.) - He is not in the bathroom."
-    ],
-    notes: "Used for people and animals. Also means 'to need' when used with て form (いてください - I need you to stay)."
-  },
-  { 
-    verb: "する", 
-    romaji: "suru",
-    meaning: "to do",
-    type: "irregular",
-    conjugations: {
-      present: "する (suru)",
-      past: "した (shita)",
-      negative: "しない (shinai)",
-      te: "して (shite)",
-      potential: "できる (dekiru)",
-      passive: "される (sareru)",
-      causative: "させる (saseru)",
-      imperative: "しろ (shiro)"
-    },
-    examples: [
-      "べんきょうをします。 (Benkyō o shimasu.) - I study (literally: I do study).",
-      "なにをしていますか？ (Nani o shite imasu ka?) - What are you doing?"
-    ],
-    notes: "One of the most versatile verbs in Japanese. Combines with nouns to make verbs (e.g. りんきょくする - to phone)."
-  },
-  { 
-    verb: "なる", 
-    romaji: "naru",
-    meaning: "to become",
-    type: "u-verb",
-    conjugations: {
-      present: "なる (naru)",
-      past: "なった (natta)",
-      negative: "ならない (naranai)",
-      te: "なって (natte)",
-      potential: "なれる (nareru)",
-      passive: "なられる (narareru)",
-      causative: "ならせる (naraseru)",
-      imperative: "なれ (nare)"
-    },
-    examples: [
-      "おとなになります。 (Otona ni narimasu.) - I will become an adult.",
-      "あめがゆきになりました。 (Ame ga yuki ni narimashita.) - The rain turned into snow."
-    ],
-    notes: "Often used with に particle to indicate what something becomes."
-  },
-  { 
-    verb: "かえる", 
-    romaji: "kaeru",
-    meaning: "to return, to go home",
-    type: "u-verb",
-    conjugations: {
-      present: "かえる (kaeru)",
-      past: "かえった (kaetta)",
-      negative: "かえらない (kaeranai)",
-      te: "かえって (kaette)",
-      potential: "かえれる (kaereru)",
-      passive: "かえられる (kaerareru)",
-      causative: "かえらせる (kaeraseru)",
-      imperative: "かえれ (kaere)"
-    },
-    examples: [
-      "うちにかえります。 (Uchi ni kaerimasu.) - I return home.",
-      "はやくかえってください。 (Hayaku kaette kudasai.) - Please return early."
-    ],
-    notes: "Different from かえる (to change) which is a ru-verb. Uses に particle for destination."
-  },
-  // Additional verbs would continue here with the same structure...
-  // For brevity, I've included 10 detailed verbs, but the pattern continues for all 50
-  // Each verb would have the same structure: verb, romaji, meaning, type, conjugations, examples, notes
+  { verb: "たべる", romaji: "taberu" },
+  { verb: "のむ", romaji: "nomu" },
+  { verb: "いく", romaji: "iku" },
+  { verb: "くる", romaji: "kuru" },
+  { verb: "みる", romaji: "miru" },
+  { verb: "ある", romaji: "aru" },
+  { verb: "いる", romaji: "iru" },
+  { verb: "する", romaji: "suru" },
+  { verb: "なる", romaji: "naru" },
+  { verb: "かえる", romaji: "kaeru" },
+  { verb: "はいる", romaji: "hairu" },
+  { verb: "でる", romaji: "deru" },
+  { verb: "あける", romaji: "akeru" },
+  { verb: "しめる", romaji: "shimeru" },
+  { verb: "みせる", romaji: "miseru" },
+  { verb: "きく", romaji: "kiku" },
+  { verb: "はなす", romaji: "hanasu" },
+  { verb: "いう", romaji: "iu" },
+  { verb: "かく", romaji: "kaku" },
+  { verb: "よむ", romaji: "yomu" },
+  { verb: "ねる", romaji: "neru" },
+  { verb: "おきる", romaji: "okiru" },
+  { verb: "あるく", romaji: "aruku" },
+  { verb: "はしる", romaji: "hashiru" },
+  { verb: "つかう", romaji: "tsukau" },
+  { verb: "つくる", romaji: "tsukuru" },
+  { verb: "もつ", romaji: "motsu" },
+  { verb: "まつ", romaji: "matsu" },
+  { verb: "あう", romaji: "au" },
+  { verb: "わかる", romaji: "wakaru" },
+  { verb: "おぼえる", romaji: "oboeru" },
+  { verb: "わすれる", romaji: "wasureru" },
+  { verb: "おしえる", romaji: "oshieru" },
+  { verb: "ならう", romaji: "narau" },
+  { verb: "はじめる", romaji: "hajimeru" },
+  { verb: "おわる", romaji: "owaru" },
+  { verb: "はたらく", romaji: "hataraku" },
+  { verb: "べんきょうする", romaji: "benkyou suru" },
+  { verb: "のる", romaji: "noru" },
+  { verb: "おりる", romaji: "oriru" },
+  { verb: "あらう", romaji: "arau" },
+  { verb: "かう", romaji: "kau" },
+  { verb: "うる", romaji: "uru" },
+  { verb: "きる", romaji: "kiru" },
+  { verb: "ぬぐ", romaji: "nugu" },
+  { verb: "いれる", romaji: "ireru" },
+  { verb: "だす", romaji: "dasu" },
+  { verb: "およぐ", romaji: "oyogu" },
+  { verb: "あそぶ", romaji: "asobu" },
+  { verb: "わらう", romaji: "warau" }
 ];
 
 function renderVerbs() {
   const container = document.getElementById("verbList");
-  container.innerHTML = "";
-  
   verbs.forEach(v => {
     const btn = document.createElement("button");
-    btn.textContent = `${v.verb} (${v.romaji}) - ${v.meaning}`;
-    
-    // Add type tag
-    const typeTag = document.createElement("span");
-    typeTag.textContent = v.type === "ru-verb" ? "ru" : v.type === "u-verb" ? "u" : "irr";
-    typeTag.className = `type-tag ${v.type}`;
-    btn.appendChild(typeTag);
-    
-    btn.onclick = () => showVerbDetails(v);
+    btn.textContent = `${v.verb} (${v.romaji})`;
+    btn.onclick = () => window.location.href = `verb.html?verb=${v.romaji}`;
     container.appendChild(btn);
   });
 }
 
-function showVerbDetails(verb) {
-  const container = document.getElementById("verbDetailsContainer");
-  container.innerHTML = "";
-  
-  const detailsDiv = document.createElement("div");
-  detailsDiv.className = "verb-details";
-  detailsDiv.style.display = "block";
-  
-  let html = `
-    <h2>${verb.verb} (${verb.romaji}) <span class="type-tag ${verb.type}">${verb.type}</span></h2>
-    <div class="verb-info">
-      <div class="meaning">
-        <h3>Meaning</h3>
-        <p>${verb.meaning}</p>
-        ${verb.notes ? `<h3>Notes</h3><p>${verb.notes}</p>` : ''}
-      </div>
-      <div class="conjugation">
-        <h3>Conjugations</h3>
-        <ul>
-          <li><strong>Present:</strong> ${verb.conjugations.present}</li>
-          <li><strong>Past:</strong> ${verb.conjugations.past}</li>
-          <li><strong>Negative:</strong> ${verb.conjugations.negative}</li>
-          <li><strong>Te-form:</strong> ${verb.conjugations.te}</li>
-          <li><strong>Potential:</strong> ${verb.conjugations.potential}</li>
-          ${verb.conjugations.passive !== "N/A" ? `<li><strong>Passive:</strong> ${verb.conjugations.passive}</li>` : ''}
-          ${verb.conjugations.causative !== "N/A" ? `<li><strong>Causative:</strong> ${verb.conjugations.causative}</li>` : ''}
-          ${verb.conjugations.imperative !== "N/A" ? `<li><strong>Imperative:</strong> ${verb.conjugations.imperative}</li>` : ''}
-        </ul>
-      </div>
-      <div class="examples">
-        <h3>Example Sentences</h3>
-        <ul>
-          ${verb.examples.map(ex => `<li>${ex}</li>`).join('')}
-        </ul>
-      </div>
-    </div>
-    <button class="back-btn" onclick="renderVerbs()">Back to Verb List</button>
-  `;
-  
-  detailsDiv.innerHTML = html;
-  container.appendChild(detailsDiv);
-  
-  // Scroll to details
-  detailsDiv.scrollIntoView({ behavior: 'smooth' });
-}
-
-// Initial render
 renderVerbs();
 </script>
 
