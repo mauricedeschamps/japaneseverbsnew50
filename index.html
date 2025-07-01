@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>日本語動詞50選</title>
+  <title>Japanese Verbs List</title>
   <style>
     body {
       font-family: sans-serif;
@@ -34,67 +34,66 @@
     a:hover {
       background: #1565c0;
     }
-    .romaji, .english {
-      display: block;
+    .romaji {
       font-size: 0.9em;
       color: #ccc;
     }
   </style>
 </head>
 <body>
-  <h1>日本語動詞50選（ダークモード）</h1>
+  <h1>Japanese Verbs List</h1>
   <ul id="verbList"></ul>  <script>
     const verbs = [
-      { verb: "ある", romaji: "aru", sentence: "つくえの上に本がある。", english: "There is a book on the desk." },
-      { verb: "いる", romaji: "iru", sentence: "へやにねこがいる。", english: "There is a cat in the room." },
-      { verb: "する", romaji: "suru", sentence: "サッカーをする。", english: "I play soccer." },
-      { verb: "なる", romaji: "naru", sentence: "先生になりたい。", english: "I want to become a teacher." },
-      { verb: "いく", romaji: "iku", sentence: "学校に行く。", english: "I go to school." },
-      { verb: "くる", romaji: "kuru", sentence: "ともだちが来る。", english: "A friend comes." },
-      { verb: "かえる", romaji: "kaeru", sentence: "うちに帰る。", english: "I return home." },
-      { verb: "はいる", romaji: "hairu", sentence: "へやに入る。", english: "I enter the room." },
-      { verb: "でる", romaji: "deru", sentence: "へやを出る。", english: "I leave the room." },
-      { verb: "あける", romaji: "akeru", sentence: "まどを開ける。", english: "I open the window." },
-      { verb: "しめる", romaji: "shimeru", sentence: "ドアをしめる。", english: "I close the door." },
-      { verb: "みる", romaji: "miru", sentence: "テレビを見る。", english: "I watch TV." },
-      { verb: "みせる", romaji: "miseru", sentence: "しゃしんを見せる。", english: "I show a photo." },
-      { verb: "きく", romaji: "kiku", sentence: "おんがくをきく。", english: "I listen to music." },
-      { verb: "はなす", romaji: "hanasu", sentence: "日本語をはなす。", english: "I speak Japanese." },
-      { verb: "いう", romaji: "iu", sentence: "ありがとうという。", english: "I say thank you." },
-      { verb: "かく", romaji: "kaku", sentence: "てがみをかく。", english: "I write a letter." },
-      { verb: "よむ", romaji: "yomu", sentence: "本をよむ。", english: "I read a book." },
-      { verb: "たべる", romaji: "taberu", sentence: "パンをたべる。", english: "I eat bread." },
-      { verb: "のむ", romaji: "nomu", sentence: "みずをのむ。", english: "I drink water." },
-      { verb: "ねる", romaji: "neru", sentence: "はやくねる。", english: "I go to bed early." },
-      { verb: "おきる", romaji: "okiru", sentence: "６時におきる。", english: "I get up at 6." },
-      { verb: "あるく", romaji: "aruku", sentence: "こうえんをあるく。", english: "I walk in the park." },
-      { verb: "はしる", romaji: "hashiru", sentence: "はやくはしる。", english: "I run fast." },
-      { verb: "つかう", romaji: "tsukau", sentence: "スマホをつかう。", english: "I use a smartphone." },
-      { verb: "つくる", romaji: "tsukuru", sentence: "りょうりをつくる。", english: "I cook a meal." },
-      { verb: "もつ", romaji: "motsu", sentence: "かばんをもつ。", english: "I carry a bag." },
-      { verb: "まつ", romaji: "matsu", sentence: "バスをまつ。", english: "I wait for a bus." },
-      { verb: "あう", romaji: "au", sentence: "ともだちにあう。", english: "I meet a friend." },
-      { verb: "わかる", romaji: "wakaru", sentence: "いみがわかる。", english: "I understand the meaning." },
-      { verb: "おぼえる", romaji: "oboeru", sentence: "ことばをおぼえる。", english: "I memorize words." },
-      { verb: "わすれる", romaji: "wasureru", sentence: "しゅくだいをわすれる。", english: "I forget my homework." },
-      { verb: "おしえる", romaji: "oshieru", sentence: "えいごをおしえる。", english: "I teach English." },
-      { verb: "ならう", romaji: "narau", sentence: "日本語をならう。", english: "I learn Japanese." },
-      { verb: "はじめる", romaji: "hajimeru", sentence: "べんきょうをはじめる。", english: "I start studying." },
-      { verb: "おわる", romaji: "owaru", sentence: "じゅぎょうがおわる。", english: "The class ends." },
-      { verb: "はたらく", romaji: "hataraku", sentence: "会社ではたらく。", english: "I work at a company." },
-      { verb: "べんきょうする", romaji: "benkyou_suru", sentence: "日本語をべんきょうする。", english: "I study Japanese." },
-      { verb: "のる", romaji: "noru", sentence: "でんしゃにのる。", english: "I ride the train." },
-      { verb: "おりる", romaji: "oriru", sentence: "くるまをおりる。", english: "I get off the car." },
-      { verb: "あらう", romaji: "arau", sentence: "てをあらう。", english: "I wash my hands." },
-      { verb: "かう", romaji: "kau", sentence: "りんごをかう。", english: "I buy an apple." },
-      { verb: "うる", romaji: "uru", sentence: "チケットをうる。", english: "I sell a ticket." },
-      { verb: "きる", romaji: "kiru", sentence: "シャツをきる。", english: "I wear a shirt." },
-      { verb: "ぬぐ", romaji: "nugu", sentence: "くつをぬぐ。", english: "I take off my shoes." },
-      { verb: "いれる", romaji: "ireru", sentence: "カバンにいれる。", english: "I put it in my bag." },
-      { verb: "だす", romaji: "dasu", sentence: "ごみをだす。", english: "I take out the trash." },
-      { verb: "およぐ", romaji: "oyogu", sentence: "プールでおよぐ。", english: "I swim in the pool." },
-      { verb: "あそぶ", romaji: "asobu", sentence: "こうえんであそぶ。", english: "I play in the park." },
-      { verb: "わらう", romaji: "warau", sentence: "わらっている。", english: "I am laughing." }
+      { verb: "ある", romaji: "aru" },
+      { verb: "いる", romaji: "iru" },
+      { verb: "する", romaji: "suru" },
+      { verb: "なる", romaji: "naru" },
+      { verb: "いく", romaji: "iku" },
+      { verb: "くる", romaji: "kuru" },
+      { verb: "かえる", romaji: "kaeru" },
+      { verb: "はいる", romaji: "hairu" },
+      { verb: "でる", romaji: "deru" },
+      { verb: "あける", romaji: "akeru" },
+      { verb: "しめる", romaji: "shimeru" },
+      { verb: "みる", romaji: "miru" },
+      { verb: "みせる", romaji: "miseru" },
+      { verb: "きく", romaji: "kiku" },
+      { verb: "はなす", romaji: "hanasu" },
+      { verb: "いう", romaji: "iu" },
+      { verb: "かく", romaji: "kaku" },
+      { verb: "よむ", romaji: "yomu" },
+      { verb: "たべる", romaji: "taberu" },
+      { verb: "のむ", romaji: "nomu" },
+      { verb: "ねる", romaji: "neru" },
+      { verb: "おきる", romaji: "okiru" },
+      { verb: "あるく", romaji: "aruku" },
+      { verb: "はしる", romaji: "hashiru" },
+      { verb: "つかう", romaji: "tsukau" },
+      { verb: "つくる", romaji: "tsukuru" },
+      { verb: "もつ", romaji: "motsu" },
+      { verb: "まつ", romaji: "matsu" },
+      { verb: "あう", romaji: "au" },
+      { verb: "わかる", romaji: "wakaru" },
+      { verb: "おぼえる", romaji: "oboeru" },
+      { verb: "わすれる", romaji: "wasureru" },
+      { verb: "おしえる", romaji: "oshieru" },
+      { verb: "ならう", romaji: "narau" },
+      { verb: "はじめる", romaji: "hajimeru" },
+      { verb: "おわる", romaji: "owaru" },
+      { verb: "はたらく", romaji: "hataraku" },
+      { verb: "べんきょうする", romaji: "benkyou_suru" },
+      { verb: "のる", romaji: "noru" },
+      { verb: "おりる", romaji: "oriru" },
+      { verb: "あらう", romaji: "arau" },
+      { verb: "かう", romaji: "kau" },
+      { verb: "うる", romaji: "uru" },
+      { verb: "きる", romaji: "kiru" },
+      { verb: "ぬぐ", romaji: "nugu" },
+      { verb: "いれる", romaji: "ireru" },
+      { verb: "だす", romaji: "dasu" },
+      { verb: "およぐ", romaji: "oyogu" },
+      { verb: "あそぶ", romaji: "asobu" },
+      { verb: "わらう", romaji: "warau" }
     ];
 
     const container = document.getElementById("verbList");
@@ -102,7 +101,7 @@
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = `verb_${v.romaji}.html`;
-      a.innerHTML = `${v.verb} (${v.romaji})<span class="romaji">${v.sentence}</span><span class="english">${v.english}</span>`;
+      a.innerHTML = `${v.verb}<span class="romaji">${v.romaji}</span>`;
       li.appendChild(a);
       container.appendChild(li);
     });
