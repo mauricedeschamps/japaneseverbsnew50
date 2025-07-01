@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>動詞の詳細</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 1em;
+      transition: all 0.3s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    .example {
+      background-color: white;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .dark-mode .example {
+      background-color: #1e1e1e;
+    }
+    button {
+      padding: 0.5em 1em;
+      margin: 0.2em;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+    }
+    .dark-mode button {
+      background-color: #2E7D32;
+    }
+    .back-btn {
+      background-color: #2196F3;
+    }
+    .dark-mode .back-btn {
+      background-color: #1565C0;
+    }
+  </style>
+</head>
+<body>
+
+<button class="back-btn" onclick="window.location.href='index.html'">← 戻る</button>
+<button onclick="toggleMode()">🌗 ダーク/ライト切替</button>
+
+<div id="verbDetails"></div>
+
+<script>
+// 動詞データと例文
+const verbData = {
+  taberu: {
+    verb: "たべる",
+    meaning: "食べる (to eat)",
+    examples: [
+      "わたしは あさごはんを たべます。",
+      "この ケーキを たべて ください。",
+      "きのう すしを たべました。"
+    ]
+  },
+  nomu: {
+    verb: "のむ",
+    meaning: "飲む (to drink)",
+    examples: [
+      "コーヒーを のみます。",
+      "まいにち みずを たくさん のんで ください。",
+      "おさけを のみすぎないで ください。"
+    ]
+  },
+  iku: {
+    verb: "いく",
+    meaning: "行く (to go)",
+    examples: [
+      "あした とうきょうに いきます。",
+      "がっこうに いく まえに あさごはんを たべます。",
+      "どこに いきたいですか？"
+    ]
+  }
+  // 他の動詞も同様に追加...
+};
+
+function toggleMode() {
+  document.body.classList.toggle("dark-mode");
+}
+
+function loadVerbDetails() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const verbRomaji = urlParams.get('verb');
+  const verbInfo = verbData[verbRomaji];
+  
+  if (!verbInfo) {
+    document.getElementById('verbDetails').innerHTML = '<h2>動詞が見つかりません</h2>';
+    return;
+  }
+  
+  const container = document.getElementById('verbDetails');
+  container.innerHTML = `
+    <h1>${verbInfo.verb} (${verbRomaji})</h1>
+    <h2>${verbInfo.meaning}</h2>
+    <h3>例文:</h3>
+  `;
+  
+  verbInfo.examples.forEach((example, index) => {
+    const exampleDiv = document.createElement('div');
+    exampleDiv.className = 'example';
+    exampleDiv.innerHTML = `
+      <p>${example}</p>
+      <button onclick="speak('${example}')">音声を再生 🔊</button>
+    `;
+    container.appendChild(exampleDiv);
+  });
+}
+
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.text = text;
+    utterance.lang = 'ja-JP';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert('このブラウザは音声合成をサポートしていません');
+  }
+}
+
+loadVerbDetails();
+</script>
+
+</body>
+</html>
