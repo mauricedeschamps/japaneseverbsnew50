@@ -7,15 +7,10 @@
   <style>
     body {
       font-family: sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 1em;
-      transition: all 0.3s;
-    }
-    .dark-mode {
       background-color: #121212;
       color: #eee;
+      margin: 0;
+      padding: 1em;
     }
     .button-list button {
       display: block;
@@ -26,24 +21,22 @@
       border-radius: 8px;
       border: none;
       cursor: pointer;
-      background-color: #ffffff;
-      color: #333;
+      background-color: #1e1e1e;
+      color: #eee;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: 0.2s;
     }
-    .dark-mode .button-list button {
-      background-color: #1e1e1e;
-      color: #eee;
-    }
     button:hover {
-      opacity: 0.9;
+      background-color: #2e2e2e;
+    }
+    h1 {
+      color: #4CAF50;
     }
   </style>
 </head>
 <body>
 
 <h1>日本語の動詞50選</h1>
-<button onclick="toggleMode()">🌗 ダーク/ライト切替</button>
 
 <div class="button-list" id="verbList"></div>
 
@@ -109,10 +102,6 @@ function renderVerbs() {
     btn.onclick = () => window.location.href = `verb.html?verb=${v.romaji}`;
     container.appendChild(btn);
   });
-}
-
-function toggleMode() {
-  document.body.classList.toggle("dark-mode");
 }
 
 renderVerbs();
