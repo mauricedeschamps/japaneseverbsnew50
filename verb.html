@@ -7,25 +7,17 @@
   <style>
     body {
       font-family: sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 1em;
-      transition: all 0.3s;
-    }
-    .dark-mode {
       background-color: #121212;
       color: #eee;
+      margin: 0;
+      padding: 1em;
     }
     .example {
-      background-color: white;
+      background-color: #1e1e1e;
       padding: 1em;
       margin: 1em 0;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .dark-mode .example {
-      background-color: #1e1e1e;
     }
     button {
       padding: 0.5em 1em;
@@ -33,29 +25,37 @@
       border-radius: 4px;
       border: none;
       cursor: pointer;
-      background-color: #4CAF50;
+      background-color: #2E7D32;
       color: white;
     }
-    .dark-mode button {
-      background-color: #2E7D32;
+    button:hover {
+      background-color: #1B5E20;
     }
     .back-btn {
-      background-color: #2196F3;
-    }
-    .dark-mode .back-btn {
       background-color: #1565C0;
+    }
+    .back-btn:hover {
+      background-color: #0D47A1;
+    }
+    h1, h2, h3 {
+      color: #4CAF50;
+    }
+    .speak-btn {
+      background-color: #7B1FA2;
+    }
+    .speak-btn:hover {
+      background-color: #4A148C;
     }
   </style>
 </head>
 <body>
 
 <button class="back-btn" onclick="window.location.href='index.html'">← 戻る</button>
-<button onclick="toggleMode()">🌗 ダーク/ライト切替</button>
 
 <div id="verbDetails"></div>
 
 <script>
-// 動詞データと例文
+// 動詞データと例文（50個全て）
 const verbData = {
   taberu: {
     verb: "たべる",
@@ -83,13 +83,431 @@ const verbData = {
       "がっこうに いく まえに あさごはんを たべます。",
       "どこに いきたいですか？"
     ]
+  },
+  kuru: {
+    verb: "くる",
+    meaning: "来る (to come)",
+    examples: [
+      "あした ともだちが きます。",
+      "にほんに くる まえに にほんごを べんきょうしました。",
+      "はやく きて ください。"
+    ]
+  },
+  miru: {
+    verb: "みる",
+    meaning: "見る (to see/watch)",
+    examples: [
+      "えいがを みます。",
+      "この しゃしんを みて ください。",
+      "きのう テレビを みました。"
+    ]
+  },
+  aru: {
+    verb: "ある",
+    meaning: "ある (to exist - inanimate objects)",
+    examples: [
+      "つくえの うえに ほんが あります。",
+      "じかんが ありません。",
+      "びょういんは ここから とおくに あります。"
+    ]
+  },
+  iru: {
+    verb: "いる",
+    meaning: "いる (to exist - animate objects)",
+    examples: [
+      "いえに いぬが います。",
+      "がっこうに せんせいが いますか？",
+      "ともだちは えきに います。"
+    ]
+  },
+  suru: {
+    verb: "する",
+    meaning: "する (to do)",
+    examples: [
+      "べんきょうを します。",
+      "なにを していますか？",
+      "きのう かいものを しました。"
+    ]
+  },
+  naru: {
+    verb: "なる",
+    meaning: "なる (to become)",
+    examples: [
+      "おおきく なりました。",
+      "いしゃに なりたいです。",
+      "あたたかく なって きました。"
+    ]
+  },
+  kaeru: {
+    verb: "かえる",
+    meaning: "帰る (to return home)",
+    examples: [
+      "いえに かえります。",
+      "なんじに かえりますか？",
+      "きのう おそく かえりました。"
+    ]
+  },
+  hairu: {
+    verb: "はいる",
+    meaning: "入る (to enter)",
+    examples: [
+      "へやに はいります。",
+      "がっこうに はいりました。",
+      "おふろに はいって ください。"
+    ]
+  },
+  deru: {
+    verb: "でる",
+    meaning: "出る (to exit)",
+    examples: [
+      "いえを でます。",
+      "でんわが でません。",
+      "あした しごとに でます。"
+    ]
+  },
+  akeru: {
+    verb: "あける",
+    meaning: "開ける (to open)",
+    examples: [
+      "まどを あけて ください。",
+      "ドアを あけました。",
+      "この はこを あけても いいですか？"
+    ]
+  },
+  shimeru: {
+    verb: "しめる",
+    meaning: "閉める (to close)",
+    examples: [
+      "まどを しめて ください。",
+      "ドアを しめました。",
+      "でんきを しめて ください。"
+    ]
+  },
+  miseru: {
+    verb: "みせる",
+    meaning: "見せる (to show)",
+    examples: [
+      "カードを みせて ください。",
+      "しゃしんを みせました。",
+      "じしょを みせて くれませんか？"
+    ]
+  },
+  kiku: {
+    verb: "きく",
+    meaning: "聞く (to listen/ask)",
+    examples: [
+      "おんがくを ききます。",
+      "せんせいに きいて ください。",
+      "でんわを きこえません。"
+    ]
+  },
+  hanasu: {
+    verb: "はなす",
+    meaning: "話す (to speak)",
+    examples: [
+      "にほんごで はなします。",
+      "ともだちと はなしました。",
+      "もうすこし ゆっくり はなして ください。"
+    ]
+  },
+  iu: {
+    verb: "いう",
+    meaning: "言う (to say)",
+    examples: [
+      "「こんにちは」と いいました。",
+      "なんと いいましたか？",
+      "ほんとうの ことを いって ください。"
+    ]
+  },
+  kaku: {
+    verb: "かく",
+    meaning: "書く (to write)",
+    examples: [
+      "てがみを かきます。",
+      "なまえを かいて ください。",
+      "きのう レポートを かきました。"
+    ]
+  },
+  yomu: {
+    verb: "よむ",
+    meaning: "読む (to read)",
+    examples: [
+      "ほんを よみます。",
+      "しんぶんを よんで います。",
+      "この ことばの いみが よめません。"
+    ]
+  },
+  neru: {
+    verb: "ねる",
+    meaning: "寝る (to sleep)",
+    examples: [
+      "はやく ねます。",
+      "きのう おそく ねました。",
+      "ひるごはんの あとで すこし ねます。"
+    ]
+  },
+  okiru: {
+    verb: "おきる",
+    meaning: "起きる (to wake up)",
+    examples: [
+      "あさ 6じに おきます。",
+      "きのう はやく おきました。",
+      "もう おきて いますか？"
+    ]
+  },
+  aruku: {
+    verb: "あるく",
+    meaning: "歩く (to walk)",
+    examples: [
+      "えきまで あるきます。",
+      "こうえんを あるきました。",
+      "もっと はやく あるいて ください。"
+    ]
+  },
+  hashiru: {
+    verb: "はしる",
+    meaning: "走る (to run)",
+    examples: [
+      "まいにち はしります。",
+      "バスに まにあうように はしりました。",
+      "ここでは はしらないで ください。"
+    ]
+  },
+  tsukau: {
+    verb: "つかう",
+    meaning: "使う (to use)",
+    examples: [
+      "パソコンを つかいます。",
+      "この ことばは あまり つかいません。",
+      "はしを つかって たべます。"
+    ]
+  },
+  tsukuru: {
+    verb: "つくる",
+    meaning: "作る (to make)",
+    examples: [
+      "ケーキを つくります。",
+      "にほんごの ぶんを つくって ください。",
+      "きのう おかしを つくりました。"
+    ]
+  },
+  motsu: {
+    verb: "もつ",
+    meaning: "持つ (to hold/carry)",
+    examples: [
+      "かばんを もちます。",
+      "この にもつを もって ください。",
+      "おかねを もって いますか？"
+    ]
+  },
+  matsu: {
+    verb: "まつ",
+    meaning: "待つ (to wait)",
+    examples: [
+      "えきで まちます。",
+      "1じかん まちました。",
+      "もうすこし まって ください。"
+    ]
+  },
+  au: {
+    verb: "あう",
+    meaning: "会う (to meet)",
+    examples: [
+      "ともだちに あいます。",
+      "きのう せんせいに あいました。",
+      "また あいたいです。"
+    ]
+  },
+  wakaru: {
+    verb: "わかる",
+    meaning: "分かる (to understand)",
+    examples: [
+      "にほんごが わかります。",
+      "この もんだいが わかりません。",
+      "せつめいが わかりましたか？"
+    ]
+  },
+  oboeru: {
+    verb: "おぼえる",
+    meaning: "覚える (to remember)",
+    examples: [
+      "ことばを おぼえます。",
+      "この かんじが おぼえられません。",
+      "でんわばんごうを おぼえて ください。"
+    ]
+  },
+  wasureru: {
+    verb: "わすれる",
+    meaning: "忘れる (to forget)",
+    examples: [
+      "かぎを わすれました。",
+      "なまえを わすれないで ください。",
+      "ひづけを わすれて いました。"
+    ]
+  },
+  oshieru: {
+    verb: "おしえる",
+    meaning: "教える (to teach)",
+    examples: [
+      "にほんごを おしえます。",
+      "みちを おしえて ください。",
+      "せんせいが おしえて くれました。"
+    ]
+  },
+  narau: {
+    verb: "ならう",
+    meaning: "習う (to learn)",
+    examples: [
+      "ピアノを ならいます。",
+      "にほんごを ならって います。",
+      "この うたを ならいたいです。"
+    ]
+  },
+  hajimeru: {
+    verb: "はじめる",
+    meaning: "始める (to begin)",
+    examples: [
+      "べんきょうを はじめます。",
+      "あたらしい しごとを はじめました。",
+      "いつから はじめますか？"
+    ]
+  },
+  owaru: {
+    verb: "おわる",
+    meaning: "終わる (to finish)",
+    examples: [
+      "しごとが おわります。",
+      "じゅぎょうは なんじに おわりますか？",
+      "きのうの しごとは おそく おわりました。"
+    ]
+  },
+  hataraku: {
+    verb: "はたらく",
+    meaning: "働く (to work)",
+    examples: [
+      "かいしゃで はたらきます。",
+      "いそがしく はたらいています。",
+      "どこで はたらいていますか？"
+    ]
+  },
+  "benkyou suru": {
+    verb: "べんきょうする",
+    meaning: "勉強する (to study)",
+    examples: [
+      "まいにち べんきょうします。",
+      "にほんごを べんきょうして います。",
+      "きのう 3じかん べんきょうしました。"
+    ]
+  },
+  noru: {
+    verb: "のる",
+    meaning: "乗る (to ride)",
+    examples: [
+      "でんしゃに のります。",
+      "バスに のって ください。",
+      "じてんしゃに のれますか？"
+    ]
+  },
+  oriru: {
+    verb: "おりる",
+    meaning: "降りる (to get off)",
+    examples: [
+      "つぎの えきで おります。",
+      "バスを おります。",
+      "3かいで エレベーターを おりて ください。"
+    ]
+  },
+  arau: {
+    verb: "あらう",
+    meaning: "洗う (to wash)",
+    examples: [
+      "てを あらいます。",
+      "さらを あらって ください。",
+      "きのう くるまを あらいました。"
+    ]
+  },
+  kau: {
+    verb: "かう",
+    meaning: "買う (to buy)",
+    examples: [
+      "ほんを かいます。",
+      "この かばんを かいたいです。",
+      "きのう あたらしい ふくを かいました。"
+    ]
+  },
+  uru: {
+    verb: "うる",
+    meaning: "売る (to sell)",
+    examples: [
+      "この みせでは ほんを うって います。",
+      "ふるい パソコンを うりたいです。",
+      "きのう じてんしゃを うりました。"
+    ]
+  },
+  kiru: {
+    verb: "きる",
+    meaning: "着る (to wear)",
+    examples: [
+      "セーターを きます。",
+      "この シャツを きて ください。",
+      "きのう あたらしい ふくを きました。"
+    ]
+  },
+  nugu: {
+    verb: "ぬぐ",
+    meaning: "脱ぐ (to take off clothes)",
+    examples: [
+      "くつを ぬぎます。",
+      "コートを ぬいで ください。",
+      "へやに はいるとき ぼうしを ぬぎます。"
+    ]
+  },
+  ireru: {
+    verb: "いれる",
+    meaning: "入れる (to put in)",
+    examples: [
+      "コーヒーに さとうを いれます。",
+      "かばんに ほんを いれて ください。",
+      "この はこに なにを いれますか？"
+    ]
+  },
+  dasu: {
+    verb: "だす",
+    meaning: "出す (to take out)",
+    examples: [
+      "かばんから ほんを だします。",
+      "ごみを だして ください。",
+      "おかねを ださなければ なりません。"
+    ]
+  },
+  oyogu: {
+    verb: "およぐ",
+    meaning: "泳ぐ (to swim)",
+    examples: [
+      "プールで およぎます。",
+      "うみで およぎたいです。",
+      "きのう 1キロ およぎました。"
+    ]
+  },
+  asobu: {
+    verb: "あそぶ",
+    meaning: "遊ぶ (to play)",
+    examples: [
+      "こうえんで あそびます。",
+      "こどもと あそんで います。",
+      "きのう ともだちと あそびました。"
+    ]
+  },
+  warau: {
+    verb: "わらう",
+    meaning: "笑う (to laugh)",
+    examples: [
+      "おもしろい えいがを みて わらいました。",
+      "もっと わらって ください。",
+      "なにを わらって いるんですか？"
+    ]
   }
-  // 他の動詞も同様に追加...
 };
-
-function toggleMode() {
-  document.body.classList.toggle("dark-mode");
-}
 
 function loadVerbDetails() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -113,7 +531,7 @@ function loadVerbDetails() {
     exampleDiv.className = 'example';
     exampleDiv.innerHTML = `
       <p>${example}</p>
-      <button onclick="speak('${example}')">音声を再生 🔊</button>
+      <button class="speak-btn" onclick="speak('${example}')">音声を再生 🔊</button>
     `;
     container.appendChild(exampleDiv);
   });
