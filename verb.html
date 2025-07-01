@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verb Details</title>
+  <title>動詞の詳細</title>
   <style>
     body {
       font-family: sans-serif;
@@ -12,114 +12,544 @@
       margin: 0;
       padding: 1em;
     }
-    .verb-card {
+    .example {
       background-color: #1e1e1e;
-      border-radius: 8px;
       padding: 1em;
       margin: 1em 0;
-    }
-    h1 {
-      color: #4CAF50;
-      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     button {
-      padding: 0.75em;
-      font-size: 1em;
-      border-radius: 8px;
+      padding: 0.5em 1em;
+      margin: 0.2em;
+      border-radius: 4px;
       border: none;
       cursor: pointer;
-      background-color: #2e2e2e;
-      color: #eee;
-      margin-top: 1em;
+      background-color: #2E7D32;
+      color: white;
     }
     button:hover {
-      background-color: #3e3e3e;
+      background-color: #1B5E20;
+    }
+    .back-btn {
+      background-color: #1565C0;
+    }
+    .back-btn:hover {
+      background-color: #0D47A1;
+    }
+    h1, h2, h3 {
+      color: #4CAF50;
+    }
+    .speak-btn {
+      background-color: #7B1FA2;
+    }
+    .speak-btn:hover {
+      background-color: #4A148C;
     }
   </style>
 </head>
 <body>
 
-<div class="verb-card" id="verbDetails"></div>
-<button onclick="window.location.href='index.html'">Back to List</button>
+<button class="back-btn" onclick="window.location.href='index.html'">← 戻る</button>
+
+<div id="verbDetails"></div>
 
 <script>
-const verbs = [
-  { verb: "たべる", romaji: "taberu", meaning: "to eat", type: "ichidan" },
-  { verb: "のむ", romaji: "nomu", meaning: "to drink", type: "godan" },
-  { verb: "いく", romaji: "iku", meaning: "to go", type: "godan" },
-  { verb: "くる", romaji: "kuru", meaning: "to come", type: "irregular" },
-  { verb: "みる", romaji: "miru", meaning: "to see", type: "ichidan" },
-  { verb: "ある", romaji: "aru", meaning: "to exist (inanimate)", type: "godan" },
-  { verb: "いる", romaji: "iru", meaning: "to exist (animate)", type: "ichidan" },
-  { verb: "する", romaji: "suru", meaning: "to do", type: "irregular" },
-  { verb: "なる", romaji: "naru", meaning: "to become", type: "godan" },
-  { verb: "かえる", romaji: "kaeru", meaning: "to return", type: "ichidan" },
-  { verb: "はいる", romaji: "hairu", meaning: "to enter", type: "godan" },
-  { verb: "でる", romaji: "deru", meaning: "to exit", type: "ichidan" },
-  { verb: "あける", romaji: "akeru", meaning: "to open", type: "ichidan" },
-  { verb: "しめる", romaji: "shimeru", meaning: "to close", type: "ichidan" },
-  { verb: "みせる", romaji: "miseru", meaning: "to show", type: "ichidan" },
-  { verb: "きく", romaji: "kiku", meaning: "to listen", type: "godan" },
-  { verb: "はなす", romaji: "hanasu", meaning: "to speak", type: "godan" },
-  { verb: "いう", romaji: "iu", meaning: "to say", type: "godan" },
-  { verb: "かく", romaji: "kaku", meaning: "to write", type: "godan" },
-  { verb: "よむ", romaji: "yomu", meaning: "to read", type: "godan" },
-  { verb: "ねる", romaji: "neru", meaning: "to sleep", type: "ichidan" },
-  { verb: "おきる", romaji: "okiru", meaning: "to wake up", type: "ichidan" },
-  { verb: "あるく", romaji: "aruku", meaning: "to walk", type: "godan" },
-  { verb: "はしる", romaji: "hashiru", meaning: "to run", type: "godan" },
-  { verb: "つかう", romaji: "tsukau", meaning: "to use", type: "godan" },
-  { verb: "つくる", romaji: "tsukuru", meaning: "to make", type: "godan" },
-  { verb: "もつ", romaji: "motsu", meaning: "to hold", type: "godan" },
-  { verb: "まつ", romaji: "matsu", meaning: "to wait", type: "godan" },
-  { verb: "あう", romaji: "au", meaning: "to meet", type: "godan" },
-  { verb: "わかる", romaji: "wakaru", meaning: "to understand", type: "godan" },
-  { verb: "おぼえる", romaji: "oboeru", meaning: "to remember", type: "ichidan" },
-  { verb: "わすれる", romaji: "wasureru", meaning: "to forget", type: "ichidan" },
-  { verb: "おしえる", romaji: "oshieru", meaning: "to teach", type: "ichidan" },
-  { verb: "ならう", romaji: "narau", meaning: "to learn", type: "godan" },
-  { verb: "はじめる", romaji: "hajimeru", meaning: "to begin", type: "ichidan" },
-  { verb: "おわる", romaji: "owaru", meaning: "to finish", type: "godan" },
-  { verb: "はたらく", romaji: "hataraku", meaning: "to work", type: "godan" },
-  { verb: "べんきょうする", romaji: "benkyou suru", meaning: "to study", type: "irregular" },
-  { verb: "のる", romaji: "noru", meaning: "to ride", type: "godan" },
-  { verb: "おりる", romaji: "oriru", meaning: "to get off", type: "ichidan" },
-  { verb: "あらう", romaji: "arau", meaning: "to wash", type: "godan" },
-  { verb: "かう", romaji: "kau", meaning: "to buy", type: "godan" },
-  { verb: "うる", romaji: "uru", meaning: "to sell", type: "godan" },
-  { verb: "きる", romaji: "kiru", meaning: "to wear (upper body)", type: "ichidan" },
-  { verb: "ぬぐ", romaji: "nugu", meaning: "to take off (clothes)", type: "godan" },
-  { verb: "いれる", romaji: "ireru", meaning: "to put in", type: "ichidan" },
-  { verb: "だす", romaji: "dasu", meaning: "to take out", type: "godan" },
-  { verb: "およぐ", romaji: "oyogu", meaning: "to swim", type: "godan" },
-  { verb: "あそぶ", romaji: "asobu", meaning: "to play", type: "godan" },
-  { verb: "わらう", romaji: "warau", meaning: "to laugh", type: "godan" }
-];
+// 動詞データと例文（50個全て）
+const verbData = {
+  taberu: {
+    verb: "たべる",
+    meaning: "食べる (to eat)",
+    examples: [
+      "わたしは あさごはんを たべます。",
+      "この ケーキを たべて ください。",
+      "きのう すしを たべました。"
+    ]
+  },
+  nomu: {
+    verb: "のむ",
+    meaning: "飲む (to drink)",
+    examples: [
+      "コーヒーを のみます。",
+      "まいにち みずを たくさん のんで ください。",
+      "おさけを のみすぎないで ください。"
+    ]
+  },
+  iku: {
+    verb: "いく",
+    meaning: "行く (to go)",
+    examples: [
+      "あした とうきょうに いきます。",
+      "がっこうに いく まえに あさごはんを たべます。",
+      "どこに いきたいですか？"
+    ]
+  },
+  kuru: {
+    verb: "くる",
+    meaning: "来る (to come)",
+    examples: [
+      "あした ともだちが きます。",
+      "にほんに くる まえに にほんごを べんきょうしました。",
+      "はやく きて ください。"
+    ]
+  },
+  miru: {
+    verb: "みる",
+    meaning: "見る (to see/watch)",
+    examples: [
+      "えいがを みます。",
+      "この しゃしんを みて ください。",
+      "きのう テレビを みました。"
+    ]
+  },
+  aru: {
+    verb: "ある",
+    meaning: "ある (to exist - inanimate objects)",
+    examples: [
+      "つくえの うえに ほんが あります。",
+      "じかんが ありません。",
+      "びょういんは ここから とおくに あります。"
+    ]
+  },
+  iru: {
+    verb: "いる",
+    meaning: "いる (to exist - animate objects)",
+    examples: [
+      "いえに いぬが います。",
+      "がっこうに せんせいが いますか？",
+      "ともだちは えきに います。"
+    ]
+  },
+  suru: {
+    verb: "する",
+    meaning: "する (to do)",
+    examples: [
+      "べんきょうを します。",
+      "なにを していますか？",
+      "きのう かいものを しました。"
+    ]
+  },
+  naru: {
+    verb: "なる",
+    meaning: "なる (to become)",
+    examples: [
+      "おおきく なりました。",
+      "いしゃに なりたいです。",
+      "あたたかく なって きました。"
+    ]
+  },
+  kaeru: {
+    verb: "かえる",
+    meaning: "帰る (to return home)",
+    examples: [
+      "いえに かえります。",
+      "なんじに かえりますか？",
+      "きのう おそく かえりました。"
+    ]
+  },
+  hairu: {
+    verb: "はいる",
+    meaning: "入る (to enter)",
+    examples: [
+      "へやに はいります。",
+      "がっこうに はいりました。",
+      "おふろに はいって ください。"
+    ]
+  },
+  deru: {
+    verb: "でる",
+    meaning: "出る (to exit)",
+    examples: [
+      "いえを でます。",
+      "でんわが でません。",
+      "あした しごとに でます。"
+    ]
+  },
+  akeru: {
+    verb: "あける",
+    meaning: "開ける (to open)",
+    examples: [
+      "まどを あけて ください。",
+      "ドアを あけました。",
+      "この はこを あけても いいですか？"
+    ]
+  },
+  shimeru: {
+    verb: "しめる",
+    meaning: "閉める (to close)",
+    examples: [
+      "まどを しめて ください。",
+      "ドアを しめました。",
+      "でんきを しめて ください。"
+    ]
+  },
+  miseru: {
+    verb: "みせる",
+    meaning: "見せる (to show)",
+    examples: [
+      "カードを みせて ください。",
+      "しゃしんを みせました。",
+      "じしょを みせて くれませんか？"
+    ]
+  },
+  kiku: {
+    verb: "きく",
+    meaning: "聞く (to listen/ask)",
+    examples: [
+      "おんがくを ききます。",
+      "せんせいに きいて ください。",
+      "でんわを きこえません。"
+    ]
+  },
+  hanasu: {
+    verb: "はなす",
+    meaning: "話す (to speak)",
+    examples: [
+      "にほんごで はなします。",
+      "ともだちと はなしました。",
+      "もうすこし ゆっくり はなして ください。"
+    ]
+  },
+  iu: {
+    verb: "いう",
+    meaning: "言う (to say)",
+    examples: [
+      "「こんにちは」と いいました。",
+      "なんと いいましたか？",
+      "ほんとうの ことを いって ください。"
+    ]
+  },
+  kaku: {
+    verb: "かく",
+    meaning: "書く (to write)",
+    examples: [
+      "てがみを かきます。",
+      "なまえを かいて ください。",
+      "きのう レポートを かきました。"
+    ]
+  },
+  yomu: {
+    verb: "よむ",
+    meaning: "読む (to read)",
+    examples: [
+      "ほんを よみます。",
+      "しんぶんを よんで います。",
+      "この ことばの いみが よめません。"
+    ]
+  },
+  neru: {
+    verb: "ねる",
+    meaning: "寝る (to sleep)",
+    examples: [
+      "はやく ねます。",
+      "きのう おそく ねました。",
+      "ひるごはんの あとで すこし ねます。"
+    ]
+  },
+  okiru: {
+    verb: "おきる",
+    meaning: "起きる (to wake up)",
+    examples: [
+      "あさ 6じに おきます。",
+      "きのう はやく おきました。",
+      "もう おきて いますか？"
+    ]
+  },
+  aruku: {
+    verb: "あるく",
+    meaning: "歩く (to walk)",
+    examples: [
+      "えきまで あるきます。",
+      "こうえんを あるきました。",
+      "もっと はやく あるいて ください。"
+    ]
+  },
+  hashiru: {
+    verb: "はしる",
+    meaning: "走る (to run)",
+    examples: [
+      "まいにち はしります。",
+      "バスに まにあうように はしりました。",
+      "ここでは はしらないで ください。"
+    ]
+  },
+  tsukau: {
+    verb: "つかう",
+    meaning: "使う (to use)",
+    examples: [
+      "パソコンを つかいます。",
+      "この ことばは あまり つかいません。",
+      "はしを つかって たべます。"
+    ]
+  },
+  tsukuru: {
+    verb: "つくる",
+    meaning: "作る (to make)",
+    examples: [
+      "ケーキを つくります。",
+      "にほんごの ぶんを つくって ください。",
+      "きのう おかしを つくりました。"
+    ]
+  },
+  motsu: {
+    verb: "もつ",
+    meaning: "持つ (to hold/carry)",
+    examples: [
+      "かばんを もちます。",
+      "この にもつを もって ください。",
+      "おかねを もって いますか？"
+    ]
+  },
+  matsu: {
+    verb: "まつ",
+    meaning: "待つ (to wait)",
+    examples: [
+      "えきで まちます。",
+      "1じかん まちました。",
+      "もうすこし まって ください。"
+    ]
+  },
+  au: {
+    verb: "あう",
+    meaning: "会う (to meet)",
+    examples: [
+      "ともだちに あいます。",
+      "きのう せんせいに あいました。",
+      "また あいたいです。"
+    ]
+  },
+  wakaru: {
+    verb: "わかる",
+    meaning: "分かる (to understand)",
+    examples: [
+      "にほんごが わかります。",
+      "この もんだいが わかりません。",
+      "せつめいが わかりましたか？"
+    ]
+  },
+  oboeru: {
+    verb: "おぼえる",
+    meaning: "覚える (to remember)",
+    examples: [
+      "ことばを おぼえます。",
+      "この かんじが おぼえられません。",
+      "でんわばんごうを おぼえて ください。"
+    ]
+  },
+  wasureru: {
+    verb: "わすれる",
+    meaning: "忘れる (to forget)",
+    examples: [
+      "かぎを わすれました。",
+      "なまえを わすれないで ください。",
+      "ひづけを わすれて いました。"
+    ]
+  },
+  oshieru: {
+    verb: "おしえる",
+    meaning: "教える (to teach)",
+    examples: [
+      "にほんごを おしえます。",
+      "みちを おしえて ください。",
+      "せんせいが おしえて くれました。"
+    ]
+  },
+  narau: {
+    verb: "ならう",
+    meaning: "習う (to learn)",
+    examples: [
+      "ピアノを ならいます。",
+      "にほんごを ならって います。",
+      "この うたを ならいたいです。"
+    ]
+  },
+  hajimeru: {
+    verb: "はじめる",
+    meaning: "始める (to begin)",
+    examples: [
+      "べんきょうを はじめます。",
+      "あたらしい しごとを はじめました。",
+      "いつから はじめますか？"
+    ]
+  },
+  owaru: {
+    verb: "おわる",
+    meaning: "終わる (to finish)",
+    examples: [
+      "しごとが おわります。",
+      "じゅぎょうは なんじに おわりますか？",
+      "きのうの しごとは おそく おわりました。"
+    ]
+  },
+  hataraku: {
+    verb: "はたらく",
+    meaning: "働く (to work)",
+    examples: [
+      "かいしゃで はたらきます。",
+      "いそがしく はたらいています。",
+      "どこで はたらいていますか？"
+    ]
+  },
+  "benkyou suru": {
+    verb: "べんきょうする",
+    meaning: "勉強する (to study)",
+    examples: [
+      "まいにち べんきょうします。",
+      "にほんごを べんきょうして います。",
+      "きのう 3じかん べんきょうしました。"
+    ]
+  },
+  noru: {
+    verb: "のる",
+    meaning: "乗る (to ride)",
+    examples: [
+      "でんしゃに のります。",
+      "バスに のって ください。",
+      "じてんしゃに のれますか？"
+    ]
+  },
+  oriru: {
+    verb: "おりる",
+    meaning: "降りる (to get off)",
+    examples: [
+      "つぎの えきで おります。",
+      "バスを おります。",
+      "3かいで エレベーターを おりて ください。"
+    ]
+  },
+  arau: {
+    verb: "あらう",
+    meaning: "洗う (to wash)",
+    examples: [
+      "てを あらいます。",
+      "さらを あらって ください。",
+      "きのう くるまを あらいました。"
+    ]
+  },
+  kau: {
+    verb: "かう",
+    meaning: "買う (to buy)",
+    examples: [
+      "ほんを かいます。",
+      "この かばんを かいたいです。",
+      "きのう あたらしい ふくを かいました。"
+    ]
+  },
+  uru: {
+    verb: "うる",
+    meaning: "売る (to sell)",
+    examples: [
+      "この みせでは ほんを うって います。",
+      "ふるい パソコンを うりたいです。",
+      "きのう じてんしゃを うりました。"
+    ]
+  },
+  kiru: {
+    verb: "きる",
+    meaning: "着る (to wear)",
+    examples: [
+      "セーターを きます。",
+      "この シャツを きて ください。",
+      "きのう あたらしい ふくを きました。"
+    ]
+  },
+  nugu: {
+    verb: "ぬぐ",
+    meaning: "脱ぐ (to take off clothes)",
+    examples: [
+      "くつを ぬぎます。",
+      "コートを ぬいで ください。",
+      "へやに はいるとき ぼうしを ぬぎます。"
+    ]
+  },
+  ireru: {
+    verb: "いれる",
+    meaning: "入れる (to put in)",
+    examples: [
+      "コーヒーに さとうを いれます。",
+      "かばんに ほんを いれて ください。",
+      "この はこに なにを いれますか？"
+    ]
+  },
+  dasu: {
+    verb: "だす",
+    meaning: "出す (to take out)",
+    examples: [
+      "かばんから ほんを だします。",
+      "ごみを だして ください。",
+      "おかねを ださなければ なりません。"
+    ]
+  },
+  oyogu: {
+    verb: "およぐ",
+    meaning: "泳ぐ (to swim)",
+    examples: [
+      "プールで およぎます。",
+      "うみで およぎたいです。",
+      "きのう 1キロ およぎました。"
+    ]
+  },
+  asobu: {
+    verb: "あそぶ",
+    meaning: "遊ぶ (to play)",
+    examples: [
+      "こうえんで あそびます。",
+      "こどもと あそんで います。",
+      "きのう ともだちと あそびました。"
+    ]
+  },
+  warau: {
+    verb: "わらう",
+    meaning: "笑う (to laugh)",
+    examples: [
+      "おもしろい えいがを みて わらいました。",
+      "もっと わらって ください。",
+      "なにを わらって いるんですか？"
+    ]
+  }
+};
 
-function getVerbDetails() {
-  const params = new URLSearchParams(window.location.search);
-  const romaji = params.get('verb');
-  return verbs.find(v => v.romaji === romaji);
+function loadVerbDetails() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const verbRomaji = urlParams.get('verb');
+  const verbInfo = verbData[verbRomaji];
+  
+  if (!verbInfo) {
+    document.getElementById('verbDetails').innerHTML = '<h2>動詞が見つかりません</h2>';
+    return;
+  }
+  
+  const container = document.getElementById('verbDetails');
+  container.innerHTML = `
+    <h1>${verbInfo.verb} (${verbRomaji})</h1>
+    <h2>${verbInfo.meaning}</h2>
+    <h3>例文:</h3>
+  `;
+  
+  verbInfo.examples.forEach((example, index) => {
+    const exampleDiv = document.createElement('div');
+    exampleDiv.className = 'example';
+    exampleDiv.innerHTML = `
+      <p>${example}</p>
+      <button class="speak-btn" onclick="speak('${example}')">音声を再生 🔊</button>
+    `;
+    container.appendChild(exampleDiv);
+  });
 }
 
-function renderVerbDetails() {
-  const verb = getVerbDetails();
-  const container = document.getElementById('verbDetails');
-  
-  if (verb) {
-    container.innerHTML = `
-      <h1>${verb.verb}</h1>
-      <p><strong>Romaji:</strong> ${verb.romaji}</p>
-      <p><strong>Meaning:</strong> ${verb.meaning}</p>
-      <p><strong>Type:</strong> ${verb.type}</p>
-    `;
-    document.title = `${verb.verb} Details`;
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.text = text;
+    utterance.lang = 'ja-JP';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
   } else {
-    container.innerHTML = `<p>Verb not found</p>`;
+    alert('このブラウザは音声合成をサポートしていません');
   }
 }
 
-renderVerbDetails();
+loadVerbDetails();
 </script>
 
 </body>
