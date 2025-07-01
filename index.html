@@ -1,381 +1,109 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html><html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Japanese Verbs Master</title>
+  <title>Japanese Verbs List</title>
   <style>
-    /* ベーススタイル */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: sans-serif;
       background-color: #121212;
       color: #ffffff;
-      padding: 20px;
-      margin: 0;
-      line-height: 1.6;
-    }
-    
-    /* メインコンテナ */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    /* ヘッダー */
-    header {
-      margin-bottom: 30px;
-      text-align: center;
+      padding: 1em;
     }
     h1 {
-      color: #4fc3f7;
-      margin-bottom: 10px;
-      font-size: 2.2em;
+      font-size: 1.8em;
+      margin-bottom: 1em;
+      color: #ffffff;
     }
-    .subtitle {
-      color: #b0bec5;
-      font-size: 1em;
-    }
-    
-    /* 動詞リスト */
-    .verb-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-      padding: 0;
+    ul {
       list-style: none;
+      padding: 0;
     }
-    .verb-card {
-      background: #1e1e1e;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+    li {
+      margin: 0.5em 0;
     }
-    .verb-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-    .verb-button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      background: transparent;
+    a {
+      display: block;
+      text-decoration: none;
+      background: #1e88e5;
       color: white;
-      text-align: left;
-      cursor: pointer;
+      padding: 0.8em;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
-    .verb-text {
-      font-size: 1.2em;
-      margin-bottom: 5px;
+    a:hover {
+      background: #1565c0;
     }
     .romaji {
       font-size: 0.9em;
-      color: #b0bec5;
-      opacity: 0.8;
-    }
-    
-    /* モーダルダイアログ */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      overflow-y: auto;
-      animation: fadeIn 0.3s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .modal-content {
-      background: #1e1e1e;
-      margin: 30px auto;
-      padding: 30px;
-      max-width: 700px;
-      border-radius: 10px;
-      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
-      position: relative;
-    }
-    .close-button {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 1.5em;
-      color: #b0bec5;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    .close-button:hover {
-      color: #ffffff;
-    }
-    
-    /* 動詞詳細 */
-    .verb-header {
-      margin-bottom: 20px;
-    }
-    .verb-title {
-      color: #4fc3f7;
-      font-size: 2em;
-      margin: 0;
-    }
-    .verb-romaji {
-      color: #b0bec5;
-      font-size: 1.2em;
-      margin: 5px 0 20px;
-    }
-    
-    /* 音声プレーヤー */
-    .audio-player {
-      background: #252525;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px 0;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .audio-button {
-      background: #4fc3f7;
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 1.2em;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .audio-button:hover {
-      background: #3da8d8;
-    }
-    .audio-text {
-      color: #b0bec5;
-    }
-    
-    /* 例文 */
-    .examples-title {
-      color: #4fc3f7;
-      margin: 30px 0 15px;
-      font-size: 1.3em;
-    }
-    .example-list {
-      padding: 0;
-      list-style: none;
-    }
-    .example-item {
-      background: #252525;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border-left: 4px solid #4fc3f7;
-    }
-    
-    /* レスポンシブ対応 */
-    @media (max-width: 768px) {
-      .verb-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      }
-      .modal-content {
-        margin: 15px;
-        padding: 20px;
-      }
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Japanese Verbs</h1>
-      <p class="subtitle">クリックして詳細を表示</p>
-    </header>
-    
-    <ul class="verb-grid" id="verbList"></ul>
-  </div>
-  
-  <!-- モーダルダイアログ -->
-  <div id="verbModal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      
-      <div class="verb-header">
-        <h2 class="verb-title" id="verbTitle"></h2>
-        <div class="verb-romaji" id="verbRomaji"></div>
-      </div>
-      
-      <div class="audio-player">
-        <button class="audio-button" id="playAudio">▶</button>
-        <span class="audio-text">発音を再生</span>
-        <audio id="verbAudio"></audio>
-      </div>
-      
-      <h3 class="examples-title">例文</h3>
-      <ul class="example-list" id="verbExamples"></ul>
-    </div>
-  </div>
-
-  <script>
-    // 動詞データ
+  <h1>Japanese Verbs List</h1>
+  <ul id="verbList"></ul>  <script>
     const verbs = [
-      {
-        verb: "ある",
-        romaji: "aru",
-        examples: [
-          "ここに本がある (There is a book here)",
-          "時間がない (I don't have time)"
-        ]
-      },
-      {
-        verb: "いる",
-        romaji: "iru",
-        examples: [
-          "猫がいる (There is a cat)",
-          "友達が待っている (My friend is waiting)"
-        ]
-      },
-      {
-        verb: "する",
-        romaji: "suru",
-        examples: [
-          "勉強する (to study)",
-          "料理する (to cook)"
-        ]
-      },
-      {
-        verb: "なる",
-        romaji: "naru",
-        examples: [
-          "医者になる (to become a doctor)",
-          "寒くなる (to get cold)"
-        ]
-      },
-      {
-        verb: "いく",
-        romaji: "iku",
-        examples: [
-          "学校に行く (to go to school)",
-          "買い物に行く (to go shopping)"
-        ]
-      },
-      {
-        verb: "くる",
-        romaji: "kuru",
-        examples: [
-          "家に来る (to come home)",
-          "明日来る (to come tomorrow)"
-        ]
-      },
-      {
-        verb: "かえる",
-        romaji: "kaeru",
-        examples: [
-          "家に帰る (to return home)",
-          "国に帰る (to return to one's country)"
-        ]
-      },
-      {
-        verb: "はいる",
-        romaji: "hairu",
-        examples: [
-          "部屋に入る (to enter a room)",
-          "大学に入る (to enter university)"
-        ]
-      },
-      {
-        verb: "でる",
-        romaji: "deru",
-        examples: [
-          "家を出る (to leave home)",
-          "テレビに出る (to appear on TV)"
-        ]
-      },
-      {
-        verb: "たべる",
-        romaji: "taberu",
-        examples: [
-          "ご飯を食べる (to eat a meal)",
-          "果物を食べる (to eat fruit)"
-        ]
-      }
+      { verb: "ある", romaji: "aru" },
+      { verb: "いる", romaji: "iru" },
+      { verb: "する", romaji: "suru" },
+      { verb: "なる", romaji: "naru" },
+      { verb: "いく", romaji: "iku" },
+      { verb: "くる", romaji: "kuru" },
+      { verb: "かえる", romaji: "kaeru" },
+      { verb: "はいる", romaji: "hairu" },
+      { verb: "でる", romaji: "deru" },
+      { verb: "あける", romaji: "akeru" },
+      { verb: "しめる", romaji: "shimeru" },
+      { verb: "みる", romaji: "miru" },
+      { verb: "みせる", romaji: "miseru" },
+      { verb: "きく", romaji: "kiku" },
+      { verb: "はなす", romaji: "hanasu" },
+      { verb: "いう", romaji: "iu" },
+      { verb: "かく", romaji: "kaku" },
+      { verb: "よむ", romaji: "yomu" },
+      { verb: "たべる", romaji: "taberu" },
+      { verb: "のむ", romaji: "nomu" },
+      { verb: "ねる", romaji: "neru" },
+      { verb: "おきる", romaji: "okiru" },
+      { verb: "あるく", romaji: "aruku" },
+      { verb: "はしる", romaji: "hashiru" },
+      { verb: "つかう", romaji: "tsukau" },
+      { verb: "つくる", romaji: "tsukuru" },
+      { verb: "もつ", romaji: "motsu" },
+      { verb: "まつ", romaji: "matsu" },
+      { verb: "あう", romaji: "au" },
+      { verb: "わかる", romaji: "wakaru" },
+      { verb: "おぼえる", romaji: "oboeru" },
+      { verb: "わすれる", romaji: "wasureru" },
+      { verb: "おしえる", romaji: "oshieru" },
+      { verb: "ならう", romaji: "narau" },
+      { verb: "はじめる", romaji: "hajimeru" },
+      { verb: "おわる", romaji: "owaru" },
+      { verb: "はたらく", romaji: "hataraku" },
+      { verb: "べんきょうする", romaji: "benkyou_suru" },
+      { verb: "のる", romaji: "noru" },
+      { verb: "おりる", romaji: "oriru" },
+      { verb: "あらう", romaji: "arau" },
+      { verb: "かう", romaji: "kau" },
+      { verb: "うる", romaji: "uru" },
+      { verb: "きる", romaji: "kiru" },
+      { verb: "ぬぐ", romaji: "nugu" },
+      { verb: "いれる", romaji: "ireru" },
+      { verb: "だす", romaji: "dasu" },
+      { verb: "およぐ", romaji: "oyogu" },
+      { verb: "あそぶ", romaji: "asobu" },
+      { verb: "わらう", romaji: "warau" }
     ];
 
-    // DOM要素
-    const verbList = document.getElementById('verbList');
-    const verbModal = document.getElementById('verbModal');
-    const closeButton = document.querySelector('.close-button');
-    const verbTitle = document.getElementById('verbTitle');
-    const verbRomaji = document.getElementById('verbRomaji');
-    const verbExamples = document.getElementById('verbExamples');
-    const playAudioButton = document.getElementById('playAudio');
-    const verbAudio = document.getElementById('verbAudio');
-
-    // 動詞リストを生成
-    function renderVerbList() {
-      verbList.innerHTML = '';
-      
-      verbs.forEach(verb => {
-        const li = document.createElement('li');
-        li.className = 'verb-card';
-        
-        const button = document.createElement('button');
-        button.className = 'verb-button';
-        button.innerHTML = `
-          <div class="verb-text">${verb.verb}</div>
-          <div class="romaji">${verb.romaji}</div>
-        `;
-        
-        button.addEventListener('click', () => showVerbDetail(verb));
-        
-        li.appendChild(button);
-        verbList.appendChild(li);
-      });
-    }
-
-    // 動詞詳細を表示
-    function showVerbDetail(verb) {
-      // 基本情報を設定
-      verbTitle.textContent = verb.verb;
-      verbRomaji.textContent = verb.romaji;
-      
-      // 音声ファイルを設定（実際にはファイルが必要）
-      verbAudio.src = `audio/${verb.romaji}.mp3`;
-      
-      // 例文を設定
-      verbExamples.innerHTML = '';
-      verb.examples.forEach(example => {
-        const li = document.createElement('li');
-        li.className = 'example-item';
-        li.textContent = example;
-        verbExamples.appendChild(li);
-      });
-      
-      // モーダルを表示
-      verbModal.style.display = 'block';
-      document.body.style.overflow = 'hidden'; // 背景スクロールを無効化
-    }
-
-    // モーダルを閉じる
-    function closeModal() {
-      verbModal.style.display = 'none';
-      document.body.style.overflow = 'auto'; // 背景スクロールを有効化
-      verbAudio.pause(); // 音声を停止
-    }
-
-    // イベントリスナー
-    closeButton.addEventListener('click', closeModal);
-    playAudioButton.addEventListener('click', () => verbAudio.play());
-    
-    // モーダル外をクリックで閉じる
-    window.addEventListener('click', (event) => {
-      if (event.target === verbModal) {
-        closeModal();
-      }
+    const container = document.getElementById("verbList");
+    verbs.forEach(v => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = `verb_${v.romaji}.html`;
+      a.innerHTML = `${v.verb}<span class="romaji">${v.romaji}</span>`;
+      li.appendChild(a);
+      container.appendChild(li);
     });
-    
-    // 初期化
-    renderVerbList();
-  </script>
-</body>
+  </script></body>
 </html>
