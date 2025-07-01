@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +19,10 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .romaji {
+    .romaji, .translation {
       color: #aaa;
       font-style: italic;
-      margin-top: 0.5em;
+      margin: 0.5em 0;
     }
     button {
       padding: 0.5em 1em;
@@ -60,14 +60,45 @@
 const verbData = {
   taberu: {
     verb: "たべる",
+    romaji: "taberu",
     meaning: "to eat",
     examples: [
-      {japanese: "わたしは あさごはんを たべます。", romaji: "Watashi wa asagohan o tabemasu."},
-      {japanese: "この ケーキを たべて ください。", romaji: "Kono kēki o tabete kudasai."},
-      {japanese: "きのう すしを たべました。", romaji: "Kinō sushi o tabemashita."}
+      {japanese: "わたしは あさごはんを たべます。", romaji: "Watashi wa asagohan o tabemasu.", translation: "I eat breakfast."},
+      {japanese: "この ケーキを たべて ください。", romaji: "Kono kēki o tabete kudasai.", translation: "Please eat this cake."},
+      {japanese: "きのう すしを たべました。", romaji: "Kinō sushi o tabemashita.", translation: "I ate sushi yesterday."}
     ]
   },
-  // ... (他の動詞データも同様の形式で)
+  nomu: {
+    verb: "のむ",
+    romaji: "nomu",
+    meaning: "to drink",
+    examples: [
+      {japanese: "コーヒーを のみます。", romaji: "Kōhī o nomimasu.", translation: "I drink coffee."},
+      {japanese: "まいにち みずを たくさん のんで ください。", romaji: "Mainichi mizu o takusan nonde kudasai.", translation: "Please drink plenty of water every day."},
+      {japanese: "おさけを のみすぎないで ください。", romaji: "Osake o nomisuginaide kudasai.", translation: "Please don't drink too much alcohol."}
+    ]
+  },
+  iku: {
+    verb: "いく",
+    romaji: "iku",
+    meaning: "to go",
+    examples: [
+      {japanese: "あした とうきょうに いきます。", romaji: "Ashita Tōkyō ni ikimasu.", translation: "I will go to Tokyo tomorrow."},
+      {japanese: "がっこうに いく まえに あさごはんを たべます。", romaji: "Gakkō ni iku mae ni asagohan o tabemasu.", translation: "I eat breakfast before going to school."},
+      {japanese: "どこに いきたいですか？", romaji: "Doko ni ikitai desu ka?", translation: "Where do you want to go?"}
+    ]
+  },
+  // ... (他の47個の動詞も同様の形式で)
+  warau: {
+    verb: "わらう",
+    romaji: "warau",
+    meaning: "to laugh",
+    examples: [
+      {japanese: "おもしろい えいがを みて わらいました。", romaji: "Omoshiroi eiga o mite waraimashita.", translation: "I watched a funny movie and laughed."},
+      {japanese: "もっと わらって ください。", romaji: "Motto waratte kudasai.", translation: "Please laugh more."},
+      {japanese: "なにを わらって いるんですか？", romaji: "Nani o waratte irun desu ka?", translation: "What are you laughing at?"}
+    ]
+  }
 };
 
 function loadVerbDetails() {
@@ -82,8 +113,8 @@ function loadVerbDetails() {
   
   const container = document.getElementById('verbDetails');
   container.innerHTML = `
-    <h1>${verbInfo.verb} (${verbRomaji})</h1>
-    <h2>${verbInfo.meaning}</h2>
+    <h1>${verbInfo.verb} (${verbInfo.romaji})</h1>
+    <h2>Meaning: ${verbInfo.meaning}</h2>
     <h3>Example Sentences:</h3>
   `;
   
@@ -93,6 +124,7 @@ function loadVerbDetails() {
     exampleDiv.innerHTML = `
       <p>${example.japanese}</p>
       <p class="romaji">${example.romaji}</p>
+      <p class="translation">${example.translation}</p>
       <button class="speak-btn" onclick="speak('${example.japanese}')">Sound</button>
     `;
     container.appendChild(exampleDiv);
