@@ -2,8 +2,14 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#4CAF50">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Verb Details</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%234CAF50%22/><text y=%22.9em%22 font-size=%2290%22>🇯🇵</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%234CAF50%22/><text y=%22.9em%22 font-size=%2290%22>🇯🇵</text></svg>">
   <style>
     body {
       font-family: sans-serif;
@@ -53,6 +59,16 @@
     .speak-btn:hover {
       background-color: #4A148C;
     }
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      padding: 1em;
+      color: #aaa;
+    }
+    .contact-link {
+      color: #4CAF50;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -60,6 +76,10 @@
 <button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
 
 <div id="verbDetails"></div>
+
+<footer>
+  <a href="mailto:mementomorikatsu@gmail.com" class="contact-link">Contact me<br>mementomorikatsu@gmail.com</a>
+</footer>
 
 <script>
 const verbData = {
