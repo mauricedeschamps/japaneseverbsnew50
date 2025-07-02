@@ -1,59 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#dc3545">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>Japanese Verbs 50</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22skyblue%22/><text y=%22.9em%22 font-size=%2290%22>🔴</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22skyblue%22/><text y=%22.9em%22 font-size=%2290%22>🔴</text></svg>">
-
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #121212;
-            color: #eee;
-            margin: 0;
-            padding: 1em;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .button-list button {
-            display: block;
-            width: 100%;
-            padding: 0.75em;
-            margin: 0.5em 0;
-            font-size: 1.2em;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            background-color: #1e1e1e;
-            color: #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: 0.2s;
-        }
-        button:hover {
-            background-color: #2e2e2e;
-        }
-        h1 {
-            color: #4CAF50;
-            text-align: center;
-            margin-top: 0;
-        }
-        footer {
-            margin-top: auto;
-            text-align: center;
-            padding: 1em 0;
-        }
-        .contact-link {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japanese Verbs 50</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #121212;
+      color: #eee;
+      margin: 0;
+      padding: 1em;
+    }
+    .button-list button {
+      display: block;
+      width: 100%;
+      padding: 0.75em;
+      margin: 0.5em 0;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background-color: #1e1e1e;
+      color: #eee;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: 0.2s;
+    }
+    button:hover {
+      background-color: #2e2e2e;
+    }
+    h1 {
+      color: #4CAF50;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -61,81 +41,71 @@
 
 <div class="button-list" id="verbList"></div>
 
-<footer>
-    <a href="mailto:mementomorikatsu@gmail.com" class="contact-link">Contact me<br>mementomorikatsu@gmail.com</a>
-</footer>
-
 <script>
 const verbs = [
-    { verb: "たべる", romaji: "taberu", meaning: "to eat" },
-    { verb: "のむ", romaji: "nomu", meaning: "to drink" },
-    { verb: "いく", romaji: "iku", meaning: "to go" },
-    { verb: "くる", romaji: "kuru", meaning: "to come" },
-    { verb: "する", romaji: "suru", meaning: "to do" },
-    { verb: "みる", romaji: "miru", meaning: "to see" },
-    { verb: "きく", romaji: "kiku", meaning: "to listen" },
-    { verb: "よむ", romaji: "yomu", meaning: "to read" },
-    { verb: "かく", romaji: "kaku", meaning: "to write" },
-    { verb: "はなす", romaji: "hanasu", meaning: "to speak" },
-    { verb: "あう", romaji: "au", meaning: "to meet" },
-    { verb: "かう", romaji: "kau", meaning: "to buy" },
-    { verb: "とる", romaji: "toru", meaning: "to take" },
-    { verb: "おきる", romaji: "okiru", meaning: "to wake up" },
-    { verb: "ねる", romaji: "neru", meaning: "to sleep" },
-    { verb: "はたらく", romaji: "hataraku", meaning: "to work" },
-    { verb: "べんきょうする", romaji: "benkyou suru", meaning: "to study" },
-    { verb: "あそぶ", romaji: "asobu", meaning: "to play" },
-    { verb: "たつ", romaji: "tatsu", meaning: "to stand" },
-    { verb: "すわる", romaji: "suwaru", meaning: "to sit" },
-    { verb: "あるく", romaji: "aruku", meaning: "to walk" },
-    { verb: "はしる", romaji: "hashiru", meaning: "to run" },
-    { verb: "およぐ", romaji: "oyogu", meaning: "to swim" },
-    { verb: "とぶ", romaji: "tobu", meaning: "to fly" },
-    { verb: "のる", romaji: "noru", meaning: "to ride" },
-    { verb: "おる", romaji: "oru", meaning: "to break" },
-    { verb: "なおす", romaji: "naosu", meaning: "to fix" },
-    { verb: "あける", romaji: "akeru", meaning: "to open" },
-    { verb: "しめる", romaji: "shimeru", meaning: "to close" },
-    { verb: "つける", romaji: "tsukeru", meaning: "to turn on" },
-    { verb: "けす", romaji: "kesu", meaning: "to turn off" },
-    { verb: "あらう", romaji: "arau", meaning: "to wash" },
-    { verb: "そうじする", romaji: "souji suru", meaning: "to clean" },
-    { verb: "せんたくする", romaji: "sentaku suru", meaning: "to do laundry" },
-    { verb: "りょうりする", romaji: "ryouri suru", meaning: "to cook" },
-    { verb: "つくる", romaji: "tsukuru", meaning: "to make" },
-    { verb: "かう", romaji: "kau", meaning: "to keep (a pet)" },
-    { verb: "うる", romaji: "uru", meaning: "to sell" },
-    { verb: "もつ", romaji: "motsu", meaning: "to hold" },
-    { verb: "わたす", romaji: "watasu", meaning: "to hand over" },
-    { verb: "とどける", romaji: "todokeru", meaning: "to deliver" },
-    { verb: "あむ", romaji: "amu", meaning: "to knit" },
-    { verb: "ぬう", romaji: "nuu", meaning: "to sew" },
-    { verb: "きる", romaji: "kiru", meaning: "to cut" },
-    { verb: "はる", romaji: "haru", meaning: "to stick" },
-    { verb: "おす", romaji: "osu", meaning: "to push" },
-    { verb: "ひく", romaji: "hiku", meaning: "to pull" },
-    { verb: "まつ", romaji: "matsu", meaning: "to wait" },
-    { verb: "よぶ", romaji: "yobu", meaning: "to call" },
-    { verb: "こたえる", romaji: "kotaeru", meaning: "to answer" }
+  { verb: "たべる", romaji: "taberu", meaning: "to eat" },
+  { verb: "のむ", romaji: "nomu", meaning: "to drink" },
+  { verb: "いく", romaji: "iku", meaning: "to go" },
+  { verb: "くる", romaji: "kuru", meaning: "to come" },
+  { verb: "する", romaji: "suru", meaning: "to do" },
+  { verb: "みる", romaji: "miru", meaning: "to see" },
+  { verb: "きく", romaji: "kiku", meaning: "to listen" },
+  { verb: "よむ", romaji: "yomu", meaning: "to read" },
+  { verb: "かく", romaji: "kaku", meaning: "to write" },
+  { verb: "はなす", romaji: "hanasu", meaning: "to speak" },
+  { verb: "あう", romaji: "au", meaning: "to meet" },
+  { verb: "かう", romaji: "kau", meaning: "to buy" },
+  { verb: "とる", romaji: "toru", meaning: "to take" },
+  { verb: "おきる", romaji: "okiru", meaning: "to wake up" },
+  { verb: "ねる", romaji: "neru", meaning: "to sleep" },
+  { verb: "はたらく", romaji: "hataraku", meaning: "to work" },
+  { verb: "べんきょうする", romaji: "benkyou suru", meaning: "to study" },
+  { verb: "あそぶ", romaji: "asobu", meaning: "to play" },
+  { verb: "たつ", romaji: "tatsu", meaning: "to stand" },
+  { verb: "すわる", romaji: "suwaru", meaning: "to sit" },
+  { verb: "あるく", romaji: "aruku", meaning: "to walk" },
+  { verb: "はしる", romaji: "hashiru", meaning: "to run" },
+  { verb: "およぐ", romaji: "oyogu", meaning: "to swim" },
+  { verb: "とぶ", romaji: "tobu", meaning: "to fly" },
+  { verb: "のる", romaji: "noru", meaning: "to ride" },
+  { verb: "おる", romaji: "oru", meaning: "to break" },
+  { verb: "なおす", romaji: "naosu", meaning: "to fix" },
+  { verb: "あける", romaji: "akeru", meaning: "to open" },
+  { verb: "しめる", romaji: "shimeru", meaning: "to close" },
+  { verb: "つける", romaji: "tsukeru", meaning: "to turn on" },
+  { verb: "けす", romaji: "kesu", meaning: "to turn off" },
+  { verb: "あらう", romaji: "arau", meaning: "to wash" },
+  { verb: "そうじする", romaji: "souji suru", meaning: "to clean" },
+  { verb: "せんたくする", romaji: "sentaku suru", meaning: "to do laundry" },
+  { verb: "りょうりする", romaji: "ryouri suru", meaning: "to cook" },
+  { verb: "つくる", romaji: "tsukuru", meaning: "to make" },
+  { verb: "かう", romaji: "kau", meaning: "to keep (a pet)" },
+  { verb: "うる", romaji: "uru", meaning: "to sell" },
+  { verb: "もつ", romaji: "motsu", meaning: "to hold" },
+  { verb: "わたす", romaji: "watasu", meaning: "to hand over" },
+  { verb: "とどける", romaji: "todokeru", meaning: "to deliver" },
+  { verb: "あむ", romaji: "amu", meaning: "to knit" },
+  { verb: "ぬう", romaji: "nuu", meaning: "to sew" },
+  { verb: "きる", romaji: "kiru", meaning: "to cut" },
+  { verb: "はる", romaji: "haru", meaning: "to stick" },
+  { verb: "おす", romaji: "osu", meaning: "to push" },
+  { verb: "ひく", romaji: "hiku", meaning: "to pull" },
+  { verb: "まつ", romaji: "matsu", meaning: "to wait" },
+  { verb: "よぶ", romaji: "yobu", meaning: "to call" },
+  { verb: "こたえる", romaji: "kotaeru", meaning: "to answer" }
 ];
 
 function renderVerbs() {
-    const container = document.getElementById("verbList");
-    verbs.forEach(v => {
-        const btn = document.createElement("button");
-        btn.textContent = `${v.verb} (${v.romaji}) - ${v.meaning}`;
-        btn.onclick = () => {
-            // 詳細ページへのリンク（verb.htmlが存在する場合）
-            // または動詞の詳細を表示するモーダルなどを実装可能
-            alert(`Selected verb: ${v.verb}\nRomaji: ${v.romaji}\nMeaning: ${v.meaning}`);
-            // window.location.href = `verb.html?verb=${encodeURIComponent(v.romaji)}`;
-        };
-        container.appendChild(btn);
-    });
+  const container = document.getElementById("verbList");
+  verbs.forEach(v => {
+    const btn = document.createElement("button");
+    btn.textContent = `${v.verb} (${v.romaji}) - ${v.meaning}`;
+    btn.onclick = () => window.location.href = `verb.html?verb=${v.romaji}`;
+    container.appendChild(btn);
+  });
 }
 
-// ページ読み込み時に動詞リストを表示
-document.addEventListener('DOMContentLoaded', renderVerbs);
+renderVerbs();
 </script>
 
 </body>
