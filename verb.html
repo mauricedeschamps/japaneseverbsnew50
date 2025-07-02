@@ -24,6 +24,11 @@
       font-style: italic;
       margin-top: 0.5em;
     }
+    .english {
+      color: #4CAF50;
+      margin-top: 0.5em;
+      font-weight: bold;
+    }
     button {
       padding: 0.5em 1em;
       margin: 0.2em;
@@ -62,441 +67,441 @@ const verbData = {
     verb: "たべる",
     meaning: "to eat",
     examples: [
-      {japanese: "わたしは あさごはんを たべます。", romaji: "Watashi wa asagohan o tabemasu."},
-      {japanese: "この ケーキを たべて ください。", romaji: "Kono kēki o tabete kudasai."},
-      {japanese: "きのう すしを たべました。", romaji: "Kinō sushi o tabemashita."}
+      {japanese: "わたしは あさごはんを たべます。", romaji: "Watashi wa asagohan o tabemasu.", english: "I eat breakfast."},
+      {japanese: "この ケーキを たべて ください。", romaji: "Kono kēki o tabete kudasai.", english: "Please eat this cake."},
+      {japanese: "きのう すしを たべました。", romaji: "Kinō sushi o tabemashita.", english: "I ate sushi yesterday."}
     ]
   },
   nomu: {
     verb: "のむ",
     meaning: "to drink",
     examples: [
-      {japanese: "みずを のみます。", romaji: "Mizu o nomimasu."},
-      {japanese: "おさけを のまないで ください。", romaji: "Osake o nomanai de kudasai."},
-      {japanese: "きのう コーヒーを のみました。", romaji: "Kinō kōhī o nomimashita."}
+      {japanese: "みずを のみます。", romaji: "Mizu o nomimasu.", english: "I drink water."},
+      {japanese: "おさけを のまないで ください。", romaji: "Osake o nomanai de kudasai.", english: "Please don't drink alcohol."},
+      {japanese: "きのう コーヒーを のみました。", romaji: "Kinō kōhī o nomimashita.", english: "I drank coffee yesterday."}
     ]
   },
   iku: {
     verb: "いく",
     meaning: "to go",
     examples: [
-      {japanese: "がっこうに いきます。", romaji: "Gakkō ni ikimasu."},
-      {japanese: "えきまで いって ください。", romaji: "Eki made itte kudasai."},
-      {japanese: "きょねん にほんに いきました。", romaji: "Kyonen Nihon ni ikimashita."}
+      {japanese: "がっこうに いきます。", romaji: "Gakkō ni ikimasu.", english: "I go to school."},
+      {japanese: "えきまで いって ください。", romaji: "Eki made itte kudasai.", english: "Please go to the station."},
+      {japanese: "きょねん にほんに いきました。", romaji: "Kyonen Nihon ni ikimashita.", english: "I went to Japan last year."}
     ]
   },
   kuru: {
     verb: "くる",
     meaning: "to come",
     examples: [
-      {japanese: "あした うちに きて ください。", romaji: "Ashita uchi ni kite kudasai."},
-      {japanese: "ともだちが パーティーに きます。", romaji: "Tomodachi ga pātī ni kimasu."},
-      {japanese: "きのう ここに きました。", romaji: "Kinō koko ni kimashita."}
+      {japanese: "あした うちに きて ください。", romaji: "Ashita uchi ni kite kudasai.", english: "Please come to my house tomorrow."},
+      {japanese: "ともだちが パーティーに きます。", romaji: "Tomodachi ga pātī ni kimasu.", english: "My friend will come to the party."},
+      {japanese: "きのう ここに きました。", romaji: "Kinō koko ni kimashita.", english: "I came here yesterday."}
     ]
   },
   suru: {
     verb: "する",
     meaning: "to do",
     examples: [
-      {japanese: "しゅくだいを します。", romaji: "Shukudai o shimasu."},
-      {japanese: "なにを して いますか？", romaji: "Nani o shite imasu ka?"},
-      {japanese: "きのう かいものを しました。", romaji: "Kinō kaimono o shimashita."}
+      {japanese: "しゅくだいを します。", romaji: "Shukudai o shimasu.", english: "I do homework."},
+      {japanese: "なにを して いますか？", romaji: "Nani o shite imasu ka?", english: "What are you doing?"},
+      {japanese: "きのう かいものを しました。", romaji: "Kinō kaimono o shimashita.", english: "I went shopping yesterday."}
     ]
   },
   miru: {
     verb: "みる",
     meaning: "to see",
     examples: [
-      {japanese: "えいがを みます。", romaji: "Eiga o mimasu."},
-      {japanese: "この しゃしんを みて ください。", romaji: "Kono shashin o mite kudasai."},
-      {japanese: "きのう テレビを みました。", romaji: "Kinō terebi o mimashita."}
+      {japanese: "えいがを みます。", romaji: "Eiga o mimasu.", english: "I watch movies."},
+      {japanese: "この しゃしんを みて ください。", romaji: "Kono shashin o mite kudasai.", english: "Please look at this photo."},
+      {japanese: "きのう テレビを みました。", romaji: "Kinō terebi o mimashita.", english: "I watched TV yesterday."}
     ]
   },
   kiku: {
     verb: "きく",
     meaning: "to listen",
     examples: [
-      {japanese: "おんがくを ききます。", romaji: "Ongaku o kikimasu."},
-      {japanese: "もういちど いって ください。", romaji: "Mō ichido itte kudasai."},
-      {japanese: "きのう ラジオを ききました。", romaji: "Kinō rajio o kikimashita."}
+      {japanese: "おんがくを ききます。", romaji: "Ongaku o kikimasu.", english: "I listen to music."},
+      {japanese: "もういちど いって ください。", romaji: "Mō ichido itte kudasai.", english: "Please say it again."},
+      {japanese: "きのう ラジオを ききました。", romaji: "Kinō rajio o kikimashita.", english: "I listened to the radio yesterday."}
     ]
   },
   yomu: {
     verb: "よむ",
     meaning: "to read",
     examples: [
-      {japanese: "ほんを よみます。", romaji: "Hon o yomimasu."},
-      {japanese: "この ぶんを よんで ください。", romaji: "Kono bun o yonde kudasai."},
-      {japanese: "きのう ざっしを よみました。", romaji: "Kinō zasshi o yomimashita."}
+      {japanese: "ほんを よみます。", romaji: "Hon o yomimasu.", english: "I read books."},
+      {japanese: "この ぶんを よんで ください。", romaji: "Kono bun o yonde kudasai.", english: "Please read this sentence."},
+      {japanese: "きのう ざっしを よみました。", romaji: "Kinō zasshi o yomimashita.", english: "I read a magazine yesterday."}
     ]
   },
   kaku: {
     verb: "かく",
     meaning: "to write",
     examples: [
-      {japanese: "てがみを かきます。", romaji: "Tegami o kakimasu."},
-      {japanese: "ここに なまえを かいて ください。", romaji: "Koko ni namae o kaite kudasai."},
-      {japanese: "きのう レポートを かきました。", romaji: "Kinō repōto o kakimashita."}
+      {japanese: "てがみを かきます。", romaji: "Tegami o kakimasu.", english: "I write letters."},
+      {japanese: "ここに なまえを かいて ください。", romaji: "Koko ni namae o kaite kudasai.", english: "Please write your name here."},
+      {japanese: "きのう レポートを かきました。", romaji: "Kinō repōto o kakimashita.", english: "I wrote a report yesterday."}
     ]
   },
   hanasu: {
     verb: "はなす",
     meaning: "to speak",
     examples: [
-      {japanese: "にほんごを はなします。", romaji: "Nihongo o hanashimasu."},
-      {japanese: "ゆっくり はなして ください。", romaji: "Yukkuri hanashite kudasai."},
-      {japanese: "きのう ともだちと はなししました。", romaji: "Kinō tomodachi to hanashimashita."}
+      {japanese: "にほんごを はなします。", romaji: "Nihongo o hanashimasu.", english: "I speak Japanese."},
+      {japanese: "ゆっくり はなして ください。", romaji: "Yukkuri hanashite kudasai.", english: "Please speak slowly."},
+      {japanese: "きのう ともだちと はなししました。", romaji: "Kinō tomodachi to hanashimashita.", english: "I talked with my friend yesterday."}
     ]
   },
   au: {
     verb: "あう",
     meaning: "to meet",
     examples: [
-      {japanese: "ともだちに あいます。", romaji: "Tomodachi ni aimasu."},
-      {japanese: "あした えきで あいましょう。", romaji: "Ashita eki de aimashou."},
-      {japanese: "きのう せんせいに あいました。", romaji: "Kinō sensei ni aimashita."}
+      {japanese: "ともだちに あいます。", romaji: "Tomodachi ni aimasu.", english: "I meet my friend."},
+      {japanese: "あした えきで あいましょう。", romaji: "Ashita eki de aimashou.", english: "Let's meet at the station tomorrow."},
+      {japanese: "きのう せんせいに あいました。", romaji: "Kinō sensei ni aimashita.", english: "I met the teacher yesterday."}
     ]
   },
   kau: {
     verb: "かう",
     meaning: "to buy",
     examples: [
-      {japanese: "みずを かいます。", romaji: "Mizu o kaimasu."},
-      {japanese: "この ほんを かって ください。", romaji: "Kono hon o katte kudasai."},
-      {japanese: "きのう くつを かいました。", romaji: "Kinō kutsu o kaimashita."}
+      {japanese: "みずを かいます。", romaji: "Mizu o kaimasu.", english: "I buy water."},
+      {japanese: "この ほんを かって ください。", romaji: "Kono hon o katte kudasai.", english: "Please buy this book."},
+      {japanese: "きのう くつを かいました。", romaji: "Kinō kutsu o kaimashita.", english: "I bought shoes yesterday."}
     ]
   },
   toru: {
     verb: "とる",
     meaning: "to take",
     examples: [
-      {japanese: "しゃしんを とります。", romaji: "Shashin o torimasu."},
-      {japanese: "この かばんを とって ください。", romaji: "Kono kaban o totte kudasai."},
-      {japanese: "きのう テストを とりました。", romaji: "Kinō tesuto o torimashita."}
+      {japanese: "しゃしんを とります。", romaji: "Shashin o torimasu.", english: "I take photos."},
+      {japanese: "この かばんを とって ください。", romaji: "Kono kaban o totte kudasai.", english: "Please take this bag."},
+      {japanese: "きのう テストを とりました。", romaji: "Kinō tesuto o torimashita.", english: "I took a test yesterday."}
     ]
   },
   okiru: {
     verb: "おきる",
     meaning: "to wake up",
     examples: [
-      {japanese: "あさ 7じに おきます。", romaji: "Asa shichiji ni okimasu."},
-      {japanese: "はやく おきて ください。", romaji: "Hayaku okite kudasai."},
-      {japanese: "きのう 6じに おきました。", romaji: "Kinō rokuji ni okimashita."}
+      {japanese: "あさ 7じに おきます。", romaji: "Asa shichiji ni okimasu.", english: "I wake up at 7am."},
+      {japanese: "はやく おきて ください。", romaji: "Hayaku okite kudasai.", english: "Please wake up early."},
+      {japanese: "きのう 6じに おきました。", romaji: "Kinō rokuji ni okimashita.", english: "I woke up at 6am yesterday."}
     ]
   },
   neru: {
     verb: "ねる",
     meaning: "to sleep",
     examples: [
-      {japanese: "よる 11じに ねます。", romaji: "Yoru jūichiji ni nemasu."},
-      {japanese: "はやく ねて ください。", romaji: "Hayaku nete kudasai."},
-      {japanese: "きのう おそく ねました。", romaji: "Kinō osoku nemashita."}
+      {japanese: "よる 11じに ねます。", romaji: "Yoru jūichiji ni nemasu.", english: "I sleep at 11pm."},
+      {japanese: "はやく ねて ください。", romaji: "Hayaku nete kudasai.", english: "Please go to sleep early."},
+      {japanese: "きのう おそく ねました。", romaji: "Kinō osoku nemashita.", english: "I slept late yesterday."}
     ]
   },
   hataraku: {
     verb: "はたらく",
     meaning: "to work",
     examples: [
-      {japanese: "かいしゃで はたらきます。", romaji: "Kaisha de hatarakimasu."},
-      {japanese: "もっと はたらいて ください。", romaji: "Motto haraite kudasai."},
-      {japanese: "きのう いっしょうけんめい はたらきました。", romaji: "Kinō isshōkenmei hatarakimashita."}
+      {japanese: "かいしゃで はたらきます。", romaji: "Kaisha de hatarakimasu.", english: "I work at a company."},
+      {japanese: "もっと はたらいて ください。", romaji: "Motto haraite kudasai.", english: "Please work harder."},
+      {japanese: "きのう いっしょうけんめい はたらきました。", romaji: "Kinō isshōkenmei hatarakimashita.", english: "I worked hard yesterday."}
     ]
   },
   "benkyou suru": {
     verb: "べんきょうする",
     meaning: "to study",
     examples: [
-      {japanese: "にほんごを べんきょうします。", romaji: "Nihongo o benkyou shimasu."},
-      {japanese: "もっと べんきょうして ください。", romaji: "Motto benkyou shite kudasai."},
-      {japanese: "きのう 3じかん べんきょうしました。", romaji: "Kinō san-jikan benkyou shimashita."}
+      {japanese: "にほんごを べんきょうします。", romaji: "Nihongo o benkyou shimasu.", english: "I study Japanese."},
+      {japanese: "もっと べんきょうして ください。", romaji: "Motto benkyou shite kudasai.", english: "Please study more."},
+      {japanese: "きのう 3じかん べんきょうしました。", romaji: "Kinō san-jikan benkyou shimashita.", english: "I studied for 3 hours yesterday."}
     ]
   },
   asobu: {
     verb: "あそぶ",
     meaning: "to play",
     examples: [
-      {japanese: "こうえんで あそびます。", romaji: "Kōen de asobimasu."},
-      {japanese: "ともだちと あそんで ください。", romaji: "Tomodachi to asonde kudasai."},
-      {japanese: "きのう ゲームを あそびました。", romaji: "Kinō gēmu o asobimashita."}
+      {japanese: "こうえんで あそびます。", romaji: "Kōen de asobimasu.", english: "I play at the park."},
+      {japanese: "ともだちと あそんで ください。", romaji: "Tomodachi to asonde kudasai.", english: "Please play with your friend."},
+      {japanese: "きのう ゲームを あそびました。", romaji: "Kinō gēmu o asobimashita.", english: "I played games yesterday."}
     ]
   },
   tatsu: {
     verb: "たつ",
     meaning: "to stand",
     examples: [
-      {japanese: "いすから たちます。", romaji: "Isu kara tachimasu."},
-      {japanese: "ここに たって ください。", romaji: "Koko ni tatte kudasai."},
-      {japanese: "きのう 1じかん たちました。", romaji: "Kinō ichi-jikan tachimashita."}
+      {japanese: "いすから たちます。", romaji: "Isu kara tachimasu.", english: "I stand up from the chair."},
+      {japanese: "ここに たって ください。", romaji: "Koko ni tatte kudasai.", english: "Please stand here."},
+      {japanese: "きのう 1じかん たちました。", romaji: "Kinō ichi-jikan tachimashita.", english: "I stood for 1 hour yesterday."}
     ]
   },
   suwaru: {
     verb: "すわる",
     meaning: "to sit",
     examples: [
-      {japanese: "いすに すわります。", romaji: "Isu ni suwarimasu."},
-      {japanese: "ここに すわって ください。", romaji: "Koko ni suwatte kudasai."},
-      {japanese: "きのう ながい あいだ すわりました。", romaji: "Kinō nagai aida suwarimashita."}
+      {japanese: "いすに すわります。", romaji: "Isu ni suwarimasu.", english: "I sit on the chair."},
+      {japanese: "ここに すわって ください。", romaji: "Koko ni suwatte kudasai.", english: "Please sit here."},
+      {japanese: "きのう ながい あいだ すわりました。", romaji: "Kinō nagai aida suwarimashita.", english: "I sat for a long time yesterday."}
     ]
   },
   aruku: {
     verb: "あるく",
     meaning: "to walk",
     examples: [
-      {japanese: "こうえんを あるきます。", romaji: "Kōen o arukimasu."},
-      {japanese: "もっと はやく あるいて ください。", romaji: "Motto hayaku aruite kudasai."},
-      {japanese: "きのう 30ぷん あるきました。", romaji: "Kinō sanjuppun arukimashita."}
+      {japanese: "こうえんを あるきます。", romaji: "Kōen o arukimasu.", english: "I walk in the park."},
+      {japanese: "もっと はやく あるいて ください。", romaji: "Motto hayaku aruite kudasai.", english: "Please walk faster."},
+      {japanese: "きのう 30ぷん あるきました。", romaji: "Kinō sanjuppun arukimashita.", english: "I walked for 30 minutes yesterday."}
     ]
   },
   hashiru: {
     verb: "はしる",
     meaning: "to run",
     examples: [
-      {japanese: "こうえんで はしります。", romaji: "Kōen de hashirimasu."},
-      {japanese: "もっと はやく はしって ください。", romaji: "Motto hayaku hashitte kudasai."},
-      {japanese: "きのう 5キロ はしりました。", romaji: "Kinō go-kiro hashirimashita."}
+      {japanese: "こうえんで はしります。", romaji: "Kōen de hashirimasu.", english: "I run in the park."},
+      {japanese: "もっと はやく はしって ください。", romaji: "Motto hayaku hashitte kudasai.", english: "Please run faster."},
+      {japanese: "きのう 5キロ はしりました。", romaji: "Kinō go-kiro hashirimashita.", english: "I ran 5 kilometers yesterday."}
     ]
   },
   oyogu: {
     verb: "およぐ",
     meaning: "to swim",
     examples: [
-      {japanese: "プールで およぎます。", romaji: "Pūru de oyogimasu."},
-      {japanese: "もっと はやく およいで ください。", romaji: "Motto hayaku oyoide kudasai."},
-      {japanese: "きのう 1キロ およぎました。", romaji: "Kinō ichi-kiro oyogimashita."}
+      {japanese: "プールで およぎます。", romaji: "Pūru de oyogimasu.", english: "I swim in the pool."},
+      {japanese: "もっと はやく およいで ください。", romaji: "Motto hayaku oyoide kudasai.", english: "Please swim faster."},
+      {japanese: "きのう 1キロ およぎました。", romaji: "Kinō ichi-kiro oyogimashita.", english: "I swam 1 kilometer yesterday."}
     ]
   },
   tobu: {
     verb: "とぶ",
     meaning: "to fly",
     examples: [
-      {japanese: "とりが そらを とびます。", romaji: "Tori ga sora o tobimasu."},
-      {japanese: "もっと たかく とんで ください。", romaji: "Motto takaku tonde kudasai."},
-      {japanese: "きのう ひこうきで とびました。", romaji: "Kinō hikōki de tobimashita."}
+      {japanese: "とりが そらを とびます。", romaji: "Tori ga sora o tobimasu.", english: "Birds fly in the sky."},
+      {japanese: "もっと たかく とんで ください。", romaji: "Motto takaku tonde kudasai.", english: "Please fly higher."},
+      {japanese: "きのう ひこうきで とびました。", romaji: "Kinō hikōki de tobimashita.", english: "I flew on a plane yesterday."}
     ]
   },
   noru: {
     verb: "のる",
     meaning: "to ride",
     examples: [
-      {japanese: "でんしゃに のります。", romaji: "Densha ni norimasu."},
-      {japanese: "この バスに のって ください。", romaji: "Kono basu ni notte kudasai."},
-      {japanese: "きのう じてんしゃに のりました。", romaji: "Kinō jitensha ni norimashita."}
+      {japanese: "でんしゃに のります。", romaji: "Densha ni norimasu.", english: "I ride the train."},
+      {japanese: "この バスに のって ください。", romaji: "Kono basu ni notte kudasai.", english: "Please ride this bus."},
+      {japanese: "きのう じてんしゃに のりました。", romaji: "Kinō jitensha ni norimashita.", english: "I rode a bicycle yesterday."}
     ]
   },
   oru: {
     verb: "おる",
     meaning: "to break",
     examples: [
-      {japanese: "コップを おります。", romaji: "Koppu o orimasu."},
-      {japanese: "きを つけて、おらないで ください。", romaji: "Ki o tsukete, oranai de kudasai."},
-      {japanese: "きのう おさらを おりました。", romaji: "Kinō osara o orimashita."}
+      {japanese: "コップを おります。", romaji: "Koppu o orimasu.", english: "I break a glass."},
+      {japanese: "きを つけて、おらないで ください。", romaji: "Ki o tsukete, oranai de kudasai.", english: "Please be careful and don't break it."},
+      {japanese: "きのう おさらを おりました。", romaji: "Kinō osara o orimashita.", english: "I broke a plate yesterday."}
     ]
   },
   naosu: {
     verb: "なおす",
     meaning: "to fix",
     examples: [
-      {japanese: "でんきを なおします。", romaji: "Denki o naoshimasu."},
-      {japanese: "この こわれた ものを なおして ください。", romaji: "Kono kowareta mono o naoshite kudasai."},
-      {japanese: "きのう パソコンを なおしました。", romaji: "Kinō pasokon o naoshimashita."}
+      {japanese: "でんきを なおします。", romaji: "Denki o naoshimasu.", english: "I fix the electricity."},
+      {japanese: "この こわれた ものを なおして ください。", romaji: "Kono kowareta mono o naoshite kudasai.", english: "Please fix this broken thing."},
+      {japanese: "きのう パソコンを なおしました。", romaji: "Kinō pasokon o naoshimashita.", english: "I fixed the computer yesterday."}
     ]
   },
   akeru: {
     verb: "あける",
     meaning: "to open",
     examples: [
-      {japanese: "まどを あけます。", romaji: "Mado o akemasu."},
-      {japanese: "この ドアを あけて ください。", romaji: "Kono doa o akete kudasai."},
-      {japanese: "きのう プレゼントを あけました。", romaji: "Kinō purezento o akemashita."}
+      {japanese: "まどを あけます。", romaji: "Mado o akemasu.", english: "I open the window."},
+      {japanese: "この ドアを あけて ください。", romaji: "Kono doa o akete kudasai.", english: "Please open this door."},
+      {japanese: "きのう プレゼントを あけました。", romaji: "Kinō purezento o akemashita.", english: "I opened a present yesterday."}
     ]
   },
   shimeru: {
     verb: "しめる",
     meaning: "to close",
     examples: [
-      {japanese: "まどを しめます。", romaji: "Mado o shimemasu."},
-      {japanese: "この ドアを しめて ください。", romaji: "Kono doa o shimete kudasai."},
-      {japanese: "きのう おくるとき ドアを しめました。", romaji: "Kinō okeru toki doa o shimemashita."}
+      {japanese: "まどを しめます。", romaji: "Mado o shimemasu.", english: "I close the window."},
+      {japanese: "この ドアを しめて ください。", romaji: "Kono doa o shimete kudasai.", english: "Please close this door."},
+      {japanese: "きのう おくるとき ドアを しめました。", romaji: "Kinō okeru toki doa o shimemashita.", english: "I closed the door when I left yesterday."}
     ]
   },
   tsukeru: {
     verb: "つける",
     meaning: "to turn on",
     examples: [
-      {japanese: "でんきを つけます。", romaji: "Denki o tsukemasu."},
-      {japanese: "テレビを つけて ください。", romaji: "Terebi o tsukete kudasai."},
-      {japanese: "きのう エアコンを つけました。", romaji: "Kinō eakon o tsukemashita."}
+      {japanese: "でんきを つけます。", romaji: "Denki o tsukemasu.", english: "I turn on the lights."},
+      {japanese: "テレビを つけて ください。", romaji: "Terebi o tsukete kudasai.", english: "Please turn on the TV."},
+      {japanese: "きのう エアコンを つけました。", romaji: "Kinō eakon o tsukemashita.", english: "I turned on the AC yesterday."}
     ]
   },
   kesu: {
     verb: "けす",
     meaning: "to turn off",
     examples: [
-      {japanese: "でんきを けします。", romaji: "Denki o keshimasu."},
-      {japanese: "テレビを けして ください。", romaji: "Terebi o keshite kudasai."},
-      {japanese: "きのう ねるまえに でんきを けしました。", romaji: "Kinō neru mae ni denki o keshimashita."}
+      {japanese: "でんきを けします。", romaji: "Denki o keshimasu.", english: "I turn off the lights."},
+      {japanese: "テレビを けして ください。", romaji: "Terebi o keshite kudasai.", english: "Please turn off the TV."},
+      {japanese: "きのう ねるまえに でんきを けしました。", romaji: "Kinō neru mae ni denki o keshimashita.", english: "I turned off the lights before sleeping yesterday."}
     ]
   },
   arau: {
     verb: "あらう",
     meaning: "to wash",
     examples: [
-      {japanese: "てを あらいます。", romaji: "Te o araimasu."},
-      {japanese: "この おさらを あらって ください。", romaji: "Kono osara o aratte kudasai."},
-      {japanese: "きのう くるまを あらいました。", romaji: "Kinō kuruma o araimashita."}
+      {japanese: "てを あらいます。", romaji: "Te o araimasu.", english: "I wash my hands."},
+      {japanese: "この おさらを あらって ください。", romaji: "Kono osara o aratte kudasai.", english: "Please wash this plate."},
+      {japanese: "きのう くるまを あらいました。", romaji: "Kinō kuruma o araimashita.", english: "I washed the car yesterday."}
     ]
   },
   "souji suru": {
     verb: "そうじする",
     meaning: "to clean",
     examples: [
-      {japanese: "へやを そうじします。", romaji: "Heya o sōji shimasu."},
-      {japanese: "トイレを そうじして ください。", romaji: "Toire o sōji shite kudasai."},
-      {japanese: "きのう いえを そうじしました。", romaji: "Kinō ie o sōji shimashita."}
+      {japanese: "へやを そうじします。", romaji: "Heya o sōji shimasu.", english: "I clean the room."},
+      {japanese: "トイレを そうじして ください。", romaji: "Toire o sōji shite kudasai.", english: "Please clean the toilet."},
+      {japanese: "きのう いえを そうじしました。", romaji: "Kinō ie o sōji shimashita.", english: "I cleaned the house yesterday."}
     ]
   },
   "sentaku suru": {
     verb: "せんたくする",
     meaning: "to do laundry",
     examples: [
-      {japanese: "せんたくを します。", romaji: "Sentaku o shimasu."},
-      {japanese: "この シャツを せんたくして ください。", romaji: "Kono shatsu o sentaku shite kudasai."},
-      {japanese: "きのう せんたくを しました。", romaji: "Kinō sentaku o shimashita."}
+      {japanese: "せんたくを します。", romaji: "Sentaku o shimasu.", english: "I do laundry."},
+      {japanese: "この シャツを せんたくして ください。", romaji: "Kono shatsu o sentaku shite kudasai.", english: "Please wash this shirt."},
+      {japanese: "きのう せんたくを しました。", romaji: "Kinō sentaku o shimashita.", english: "I did laundry yesterday."}
     ]
   },
   "ryouri suru": {
     verb: "りょうりする",
     meaning: "to cook",
     examples: [
-      {japanese: "ばんごはんを りょうりします。", romaji: "Bangohan o ryōri shimasu."},
-      {japanese: "この りょうりを つくって ください。", romaji: "Kono ryōri o tsukutte kudasai."},
-      {japanese: "きのう カレーを りょうりしました。", romaji: "Kinō karē o ryōri shimashita."}
+      {japanese: "ばんごはんを りょうりします。", romaji: "Bangohan o ryōri shimasu.", english: "I cook dinner."},
+      {japanese: "この りょうりを つくって ください。", romaji: "Kono ryōri o tsukutte kudasai.", english: "Please cook this dish."},
+      {japanese: "きのう カレーを りょうりしました。", romaji: "Kinō karē o ryōri shimashita.", english: "I cooked curry yesterday."}
     ]
   },
   tsukuru: {
     verb: "つくる",
     meaning: "to make",
     examples: [
-      {japanese: "ケーキを つくります。", romaji: "Kēki o tsukurimasu."},
-      {japanese: "この おもちゃを つくって ください。", romaji: "Kono omocha o tsukutte kudasai."},
-      {japanese: "きのう おにぎりを つくりました。", romaji: "Kinō onigiri o tsukurimashita."}
+      {japanese: "ケーキを つくります。", romaji: "Kēki o tsukurimasu.", english: "I make cakes."},
+      {japanese: "この おもちゃを つくって ください。", romaji: "Kono omocha o tsukutte kudasai.", english: "Please make this toy."},
+      {japanese: "きのう おにぎりを つくりました。", romaji: "Kinō onigiri o tsukurimashita.", english: "I made rice balls yesterday."}
     ]
   },
   uru: {
     verb: "うる",
     meaning: "to sell",
     examples: [
-      {japanese: "みせで ものを うります。", romaji: "Mise de mono o urimasu."},
-      {japanese: "この ほんを うって ください。", romaji: "Kono hon o utte kudasai."},
-      {japanese: "きのう たくさん うりました。", romaji: "Kinō takusan urimashita."}
+      {japanese: "みせで ものを うります。", romaji: "Mise de mono o urimasu.", english: "I sell things at the store."},
+      {japanese: "この ほんを うって ください。", romaji: "Kono hon o utte kudasai.", english: "Please sell this book."},
+      {japanese: "きのう たくさん うりました。", romaji: "Kinō takusan urimashita.", english: "I sold a lot yesterday."}
     ]
   },
   motsu: {
     verb: "もつ",
     meaning: "to hold",
     examples: [
-      {japanese: "かばんを もちます。", romaji: "Kaban o mochimasu."},
-      {japanese: "この にもつを もって ください。", romaji: "Kono nimotsu o motte kudasai."},
-      {japanese: "きのう おもい にもつを もちました。", romaji: "Kinō omoi nimotsu o mochimashita."}
+      {japanese: "かばんを もちます。", romaji: "Kaban o mochimasu.", english: "I hold the bag."},
+      {japanese: "この にもつを もって ください。", romaji: "Kono nimotsu o motte kudasai.", english: "Please hold this luggage."},
+      {japanese: "きのう おもい にもつを もちました。", romaji: "Kinō omoi nimotsu o mochimashita.", english: "I held heavy luggage yesterday."}
     ]
   },
   watasu: {
     verb: "わたす",
     meaning: "to hand over",
     examples: [
-      {japanese: "てがみを わたします。", romaji: "Tegami o watashimasu."},
-      {japanese: "この おかねを わたして ください。", romaji: "Kono okane o watashite kudasai."},
-      {japanese: "きのう しゅくだいを わたしました。", romaji: "Kinō shukudai o watashimashita."}
+      {japanese: "てがみを わたします。", romaji: "Tegami o watashimasu.", english: "I hand over the letter."},
+      {japanese: "この おかねを わたして ください。", romaji: "Kono okane o watashite kudasai.", english: "Please hand over this money."},
+      {japanese: "きのう しゅくだいを わたしました。", romaji: "Kinō shukudai o watashimashita.", english: "I handed in my homework yesterday."}
     ]
   },
   todokeru: {
     verb: "とどける",
     meaning: "to deliver",
     examples: [
-      {japanese: "にもつを とどけます。", romaji: "Nimotsu o todokemasu."},
-      {japanese: "この てがみを とどけて ください。", romaji: "Kono tegami o todokete kudasai."},
-      {japanese: "きのう おくりものを とどけました。", romaji: "Kinō okurimono o todokemashita."}
+      {japanese: "にもつを とどけます。", romaji: "Nimotsu o todokemasu.", english: "I deliver luggage."},
+      {japanese: "この てがみを とどけて ください。", romaji: "Kono tegami o todokete kudasai.", english: "Please deliver this letter."},
+      {japanese: "きのう おくりものを とどけました。", romaji: "Kinō okurimono o todokemashita.", english: "I delivered a present yesterday."}
     ]
   },
   amu: {
     verb: "あむ",
     meaning: "to knit",
     examples: [
-      {japanese: "セーターを あみます。", romaji: "Sētā o amimasu."},
-      {japanese: "この マフラーを あんで ください。", romaji: "Kono mafurā o ande kudasai."},
-      {japanese: "きのう てぶくろを あみました。", romaji: "Kinō tebukuro o amimashita."}
+      {japanese: "セーターを あみます。", romaji: "Sētā o amimasu.", english: "I knit sweaters."},
+      {japanese: "この マフラーを あんで ください。", romaji: "Kono mafurā o ande kudasai.", english: "Please knit this scarf."},
+      {japanese: "きのう てぶくろを あみました。", romaji: "Kinō tebukuro o amimashita.", english: "I knitted gloves yesterday."}
     ]
   },
   nuu: {
     verb: "ぬう",
     meaning: "to sew",
     examples: [
-      {japanese: "ふくを ぬいます。", romaji: "Fuku o nuimasu."},
-      {japanese: "この ボタンを ぬって ください。", romaji: "Kono botan o nutte kudasai."},
-      {japanese: "きのう スカートを ぬいました。", romaji: "Kinō sukāto o nuimashita."}
+      {japanese: "ふくを ぬいます。", romaji: "Fuku o nuimasu.", english: "I sew clothes."},
+      {japanese: "この ボタンを ぬって ください。", romaji: "Kono botan o nutte kudasai.", english: "Please sew this button."},
+      {japanese: "きのう スカートを ぬいました。", romaji: "Kinō sukāto o nuimashita.", english: "I sewed a skirt yesterday."}
     ]
   },
   kiru: {
     verb: "きる",
     meaning: "to cut",
     examples: [
-      {japanese: "かみを きります。", romaji: "Kami o kirimasu."},
-      {japanese: "この かみを きって ください。", romaji: "Kono kami o kitte kudasai."},
-      {japanese: "きのう にくを きりました。", romaji: "Kinō niku o kirimashita."}
+      {japanese: "かみを きります。", romaji: "Kami o kirimasu.", english: "I cut paper."},
+      {japanese: "この かみを きって ください。", romaji: "Kono kami o kitte kudasai.", english: "Please cut this paper."},
+      {japanese: "きのう にくを きりました。", romaji: "Kinō niku o kirimashita.", english: "I cut meat yesterday."}
     ]
   },
   haru: {
     verb: "はる",
     meaning: "to stick",
     examples: [
-      {japanese: "シールを はります。", romaji: "Shīru o harimasu."},
-      {japanese: "この ポスターを はって ください。", romaji: "Kono posutā o hatte kudasai."},
-      {japanese: "きのう きってを はりました。", romaji: "Kinō kitte o harimashita."}
+      {japanese: "シールを はります。", romaji: "Shīru o harimasu.", english: "I stick stickers."},
+      {japanese: "この ポスターを はって ください。", romaji: "Kono posutā o hatte kudasai.", english: "Please stick this poster."},
+      {japanese: "きのう きってを はりました。", romaji: "Kinō kitte o harimashita.", english: "I stuck a stamp yesterday."}
     ]
   },
   osu: {
     verb: "おす",
     meaning: "to push",
     examples: [
-      {japanese: "ボタンを おします。", romaji: "Botan o oshimasu."},
-      {japanese: "この ドアを おして ください。", romaji: "Kono doa o oshite kudasai."},
-      {japanese: "きのう エレベーターの ボタンを おしました。", romaji: "Kinō erebētā no botan o oshimashita."}
+      {japanese: "ボタンを おします。", romaji: "Botan o oshimasu.", english: "I push the button."},
+      {japanese: "この ドアを おして ください。", romaji: "Kono doa o oshite kudasai.", english: "Please push this door."},
+      {japanese: "きのう エレベーターの ボタンを おしました。", romaji: "Kinō erebētā no botan o oshimashita.", english: "I pushed the elevator button yesterday."}
     ]
   },
   hiku: {
     verb: "ひく",
     meaning: "to pull",
     examples: [
-      {japanese: "ドアを ひきます。", romaji: "Doa o hikimasu."},
-      {japanese: "この ひもを ひいて ください。", romaji: "Kono himo o hiite kudasai."},
-      {japanese: "きのう バイオリンの ひきました。", romaji: "Kinō baiorin o hikimashita."}
+      {japanese: "ドアを ひきます。", romaji: "Doa o hikimasu.", english: "I pull the door."},
+      {japanese: "この ひもを ひいて ください。", romaji: "Kono himo o hiite kudasai.", english: "Please pull this string."},
+      {japanese: "きのう バイオリンの ひきました。", romaji: "Kinō baiorin o hikimashita.", english: "I played (pulled) the violin yesterday."}
     ]
   },
   matsu: {
     verb: "まつ",
     meaning: "to wait",
     examples: [
-      {japanese: "バスを まちます。", romaji: "Basu o machimasu."},
-      {japanese: "ここで まって ください。", romaji: "Koko de matte kudasai."},
-      {japanese: "きのう 1じかん まちました。", romaji: "Kinō ichi-jikan machimashita."}
+      {japanese: "バスを まちます。", romaji: "Basu o machimasu.", english: "I wait for the bus."},
+      {japanese: "ここで まって ください。", romaji: "Koko de matte kudasai.", english: "Please wait here."},
+      {japanese: "きのう 1じかん まちました。", romaji: "Kinō ichi-jikan machimashita.", english: "I waited for 1 hour yesterday."}
     ]
   },
   yobu: {
     verb: "よぶ",
     meaning: "to call",
     examples: [
-      {japanese: "ともだちを よびます。", romaji: "Tomodachi o yobimasu."},
-      {japanese: "タクシーを よんで ください。", romaji: "Takushī o yonde kudasai."},
-      {japanese: "きのう おいしゃさんを よびました。", romaji: "Kinō oishasan o yobimashita."}
+      {japanese: "ともだちを よびます。", romaji: "Tomodachi o yobimasu.", english: "I call my friend."},
+      {japanese: "タクシーを よんで ください。", romaji: "Takushī o yonde kudasai.", english: "Please call a taxi."},
+      {japanese: "きのう おいしゃさんを よびました。", romaji: "Kinō oishasan o yobimashita.", english: "I called the doctor yesterday."}
     ]
   },
   kotaeru: {
     verb: "こたえる",
     meaning: "to answer",
     examples: [
-      {japanese: "しつもんに こたえます。", romaji: "Shitsumon ni kotaemasu."},
-      {japanese: "この もんだいに こたえて ください。", romaji: "Kono mondai ni kotaete kudasai."},
-      {japanese: "きのう せんせいの しつもんに こたえました。", romaji: "Kinō sensei no shitsumon ni kotaemashita."}
+      {japanese: "しつもんに こたえます。", romaji: "Shitsumon ni kotaemasu.", english: "I answer the question."},
+      {japanese: "この もんだいに こたえて ください。", romaji: "Kono mondai ni kotaete kudasai.", english: "Please answer this problem."},
+      {japanese: "きのう せんせいの しつもんに こたえました。", romaji: "Kinō sensei no shitsumon ni kotaemashita.", english: "I answered the teacher's question yesterday."}
     ]
   }
 };
@@ -524,6 +529,7 @@ function loadVerbDetails() {
     exampleDiv.innerHTML = `
       <p>${example.japanese}</p>
       <p class="romaji">${example.romaji}</p>
+      <p class="english">${example.english}</p>
       <button class="speak-btn" onclick="speak('${example.japanese}')">Sound</button>
     `;
     container.appendChild(exampleDiv);
