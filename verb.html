@@ -11,6 +11,7 @@
       color: #eee;
       margin: 0;
       padding: 1em;
+      min-height: 100vh;
     }
     .example {
       background-color: #1e1e1e;
@@ -22,11 +23,11 @@
     .romaji {
       color: #aaa;
       font-style: italic;
-      margin-top: 0.5em;
+      margin: 0.5em 0;
     }
     .english {
       color: #4CAF50;
-      margin-top: 0.5em;
+      margin: 0.5em 0;
       font-weight: bold;
     }
     button {
@@ -35,6 +36,7 @@
       border-radius: 4px;
       border: none;
       cursor: pointer;
+      transition: background-color 0.2s;
     }
     .back-btn {
       background-color: #1565C0;
@@ -45,6 +47,7 @@
     }
     h1, h2, h3 {
       color: #4CAF50;
+      margin-top: 0;
     }
     .speak-btn {
       background-color: #7B1FA2;
@@ -53,11 +56,19 @@
     .speak-btn:hover {
       background-color: #4A148C;
     }
+    .verb-header {
+      margin-bottom: 1.5em;
+    }
+    .not-found {
+      text-align: center;
+      padding: 2em;
+      color: #f44336;
+    }
   </style>
 </head>
 <body>
 
-<button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
+<button class="back-btn" onclick="window.location.href='index.html'">← Back to List</button>
 
 <div id="verbDetails"></div>
 
@@ -506,23 +517,52 @@ const verbData = {
   }
 };
 
+funct
+
+
+  // ... (他の動詞データはそのまま保持)
+  // 注意: 実際の実装ではすべての動詞データを含めてください
+};
+
+// URLから動詞を取得して詳細を表示
 function loadVerbDetails() {
   const urlParams = new URLSearchParams(window.location.search);
   const verbRomaji = urlParams.get('verb');
-  const verbInfo = verbData[verbRomaji];
   
-  if (!verbInfo) {
-    document.getElementById('verbDetails').innerHTML = '<h2>Verb not found</h2>';
+  if (!verbRomaji || !verbData[verbRomaji]) {
+    showNotFound();
     return;
   }
   
+  displayVerbDetails(verbRomaji);
+}
+
+// 動詞が見つからない場合の表示
+function showNotFound() {
   const container = document.getElementById('verbDetails');
   container.innerHTML = `
-    <h1>${verbInfo.verb} (${verbRomaji})</h1>
-    <h2>${verbInfo.meaning}</h2>
-    <h3>Example Sentences:</h3>
+    <div class="not-found">
+      <h2>Verb not found</h2>
+      <p>The requested verb was not found in our database.</p>
+      <button class="back-btn" onclick="window.location.href='index.html'">← Back to Verb List</button>
+    </div>
+  `;
+}
+
+// 動詞詳細を表示
+function displayVerbDetails(verbRomaji) {
+  const verbInfo = verbData[verbRomaji];
+  const container = document.getElementById('verbDetails');
+  
+  container.innerHTML = `
+    <div class="verb-header">
+      <h1>${verbInfo.verb} (${verbRomaji})</h1>
+      <h2>${verbInfo.meaning}</h2>
+      <h3>Example Sentences:</h3>
+    </div>
   `;
   
+  // 例文を追加
   verbInfo.examples.forEach((example, index) => {
     const exampleDiv = document.createElement('div');
     exampleDiv.className = 'example';
@@ -530,25 +570,51 @@ function loadVerbDetails() {
       <p>${example.japanese}</p>
       <p class="romaji">${example.romaji}</p>
       <p class="english">${example.english}</p>
-      <button class="speak-btn" onclick="speak('${example.japanese}')">Sound</button>
+      <button class="speak-btn" onclick="speak('${escapeHtml(example.japanese)}')">Sound</button>
+      <button class="speak-btn" onclick="speak('${escapeHtml(example.romaji)}', 0.8)">Romaji</button>
     `;
     container.appendChild(exampleDiv);
   });
 }
 
-function speak(text) {
+// 音声読み上げ機能
+function speak(text, rate = 0.9) {
   if ('speechSynthesis' in window) {
+    // 既存の発話をキャンセル
+    window.speechSynthesis.cancel();
+    
     const utterance = new SpeechSynthesisUtterance();
     utterance.text = text;
     utterance.lang = 'ja-JP';
-    utterance.rate = 0.9;
+    utterance.rate = rate;
+    
+    // 日本語音声を優先的に選択
+    const voices = window.speechSynthesis.getVoices();
+    const japaneseVoice = voices.find(voice => voice.lang === 'ja-JP');
+    if (japaneseVoice) {
+      utterance.voice = japaneseVoice;
+    }
+    
     window.speechSynthesis.speak(utterance);
   } else {
     alert('Text-to-speech not supported in this browser');
   }
 }
 
-loadVerbDetails();
+// HTML特殊文字をエスケープ
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// 音声合成の準備ができるまで待つ
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = loadVerbDetails;
+}
+
+// ページ読み込み時に動詞詳細を表示
+document.addEventListener('DOMContentLoaded', loadVerbDetails);
 </script>
 
 </body>
